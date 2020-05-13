@@ -35,6 +35,7 @@ fun <T> LiveData<T>.blockingObserve(): T? {
     }
     observeForever(innerObserver)
     latch.await(2, TimeUnit.SECONDS)
+    removeObserver(innerObserver)
     return value
 }
 
