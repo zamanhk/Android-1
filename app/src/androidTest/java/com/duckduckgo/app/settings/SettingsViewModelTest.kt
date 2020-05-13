@@ -20,12 +20,10 @@ import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.test.platform.app.InstrumentationRegistry
-import com.duckduckgo.app.blockingObserve
 import com.duckduckgo.app.browser.BuildConfig
 import com.duckduckgo.app.browser.defaultbrowsing.DefaultBrowserDetector
 import com.duckduckgo.app.global.DuckDuckGoTheme
 import com.duckduckgo.app.icon.api.AppIcon
-import com.duckduckgo.app.notification.AndroidNotificationScheduler
 import com.duckduckgo.app.settings.SettingsViewModel.Command
 import com.duckduckgo.app.settings.clear.ClearWhatOption.CLEAR_NONE
 import com.duckduckgo.app.settings.clear.ClearWhenOption.APP_EXIT_ONLY
@@ -127,7 +125,6 @@ class SettingsViewModelTest {
         testee.onLightThemeToggled(true)
         verify(mockAppSettingsDataStore).theme = DuckDuckGoTheme.LIGHT
 
-        testee.command.blockingObserve()
         verify(commandObserver, atLeastOnce()).onChanged(commandCaptor.capture())
         assertEquals(Command.UpdateTheme, commandCaptor.firstValue)
     }
@@ -143,7 +140,6 @@ class SettingsViewModelTest {
         testee.onLightThemeToggled(false)
         verify(mockAppSettingsDataStore).theme = DuckDuckGoTheme.DARK
 
-        testee.command.blockingObserve()
         verify(commandObserver, atLeastOnce()).onChanged(commandCaptor.capture())
         assertEquals(Command.UpdateTheme, commandCaptor.firstValue)
     }
@@ -169,7 +165,6 @@ class SettingsViewModelTest {
     @Test
     fun whenLeaveFeedBackRequestedThenCommandIsLaunchFeedback() {
         testee.userRequestedToSendFeedback()
-        testee.command.blockingObserve()
         verify(commandObserver).onChanged(commandCaptor.capture())
         assertEquals(Command.LaunchFeedback, commandCaptor.firstValue)
     }
@@ -229,7 +224,6 @@ class SettingsViewModelTest {
     @Test
     fun whenChangeIconRequestedThenCommandIsChangeIcon() {
         testee.userRequestedToChangeIcon()
-        testee.command.blockingObserve()
         verify(commandObserver).onChanged(commandCaptor.capture())
         assertEquals(Command.LaunchAppIcon, commandCaptor.firstValue)
     }
