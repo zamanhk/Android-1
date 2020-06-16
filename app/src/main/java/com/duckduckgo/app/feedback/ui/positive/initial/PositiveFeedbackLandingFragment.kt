@@ -24,9 +24,11 @@ import androidx.lifecycle.Observer
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.feedback.ui.common.FeedbackFragment
 import com.duckduckgo.app.playstore.PlayStoreUtils
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_feedback_positive_landing.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class PositiveFeedbackLandingFragment : FeedbackFragment() {
 
     interface PositiveFeedbackLandingListener {

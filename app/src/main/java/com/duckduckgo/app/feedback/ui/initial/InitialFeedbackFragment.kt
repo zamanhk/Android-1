@@ -26,9 +26,11 @@ import com.duckduckgo.app.feedback.ui.common.FeedbackFragment
 import com.duckduckgo.app.feedback.ui.initial.InitialFeedbackFragmentViewModel.Command.*
 import com.duckduckgo.app.global.DuckDuckGoTheme
 import com.duckduckgo.app.settings.db.SettingsDataStore
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_feedback.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class InitialFeedbackFragment : FeedbackFragment() {
 
     @Inject

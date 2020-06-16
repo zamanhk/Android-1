@@ -19,20 +19,16 @@ package com.duckduckgo.app.job
 import android.app.job.JobParameters
 import android.app.job.JobScheduler
 import android.app.job.JobService
-import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
 
+@AndroidEntryPoint
 @Deprecated("This is the old sync service which uses JobScheduler. A new version, `AppConfigurationWorker` uses WorkManager and should be used going forwards.")
 class AppConfigurationJobService : JobService() {
 
     @Inject
     lateinit var jobScheduler: JobScheduler
-
-    override fun onCreate() {
-        AndroidInjection.inject(this)
-        super.onCreate()
-    }
 
     override fun onStartJob(params: JobParameters?): Boolean {
         Timber.i("Deprecated AppConfigurationJobService running. Unscheduling future syncs using this job")

@@ -22,6 +22,7 @@ import android.content.Context
 import android.os.Build
 import com.duckduckgo.widget.SearchWidget
 import com.duckduckgo.widget.SearchWidgetLight
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 interface WidgetCapabilities {
@@ -30,7 +31,7 @@ interface WidgetCapabilities {
     val hasInstalledWidgets: Boolean
 }
 
-class AppWidgetCapabilities @Inject constructor(val context: Context) : WidgetCapabilities {
+class AppWidgetCapabilities @Inject constructor(@ApplicationContext val context: Context) : WidgetCapabilities {
 
     override val supportsStandardWidgetAdd: Boolean get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 

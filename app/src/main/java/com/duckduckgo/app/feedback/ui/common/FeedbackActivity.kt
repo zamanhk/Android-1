@@ -34,12 +34,14 @@ import com.duckduckgo.app.feedback.ui.negative.subreason.SubReasonNegativeFeedba
 import com.duckduckgo.app.feedback.ui.positive.initial.PositiveFeedbackLandingFragment
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.duckduckgo.app.global.view.hideKeyboard
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@AndroidEntryPoint
 class FeedbackActivity : DuckDuckGoActivity(),
     InitialFeedbackFragment.InitialFeedbackListener,
     PositiveFeedbackLandingFragment.PositiveFeedbackLandingListener,

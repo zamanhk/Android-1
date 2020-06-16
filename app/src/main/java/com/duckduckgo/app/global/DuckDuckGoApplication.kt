@@ -25,8 +25,6 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.work.WorkerFactory
 import com.duckduckgo.app.browser.BuildConfig
 import com.duckduckgo.app.browser.defaultbrowsing.DefaultBrowserObserver
-import com.duckduckgo.app.di.AppComponent
-import com.duckduckgo.app.di.DaggerAppComponent
 import com.duckduckgo.app.fire.DataClearer
 import com.duckduckgo.app.fire.FireActivity
 import com.duckduckgo.app.fire.UnsentForgetAllPixelStore
@@ -56,6 +54,7 @@ import com.duckduckgo.app.usage.app.AppDaysUsedRecorder
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import dagger.hilt.android.HiltAndroidApp
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
@@ -66,10 +65,8 @@ import timber.log.Timber
 import javax.inject.Inject
 import kotlin.concurrent.thread
 
-open class DuckDuckGoApplication : HasAndroidInjector, Application(), LifecycleObserver {
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+@HiltAndroidApp
+open class DuckDuckGoApplication : Application(), LifecycleObserver {
 
     @Inject
     lateinit var trackerDataLoader: TrackerDataLoader
@@ -151,13 +148,10 @@ open class DuckDuckGoApplication : HasAndroidInjector, Application(), LifecycleO
 
     private var launchedByFireAction: Boolean = false
 
-    open lateinit var daggerAppComponent: AppComponent
-
     override fun onCreate() {
         super.onCreate()
 
         configureLogging()
-        configureDependencyInjection()
         configureUncaughtExceptionHandler()
 
         Timber.i("Creating DuckDuckGoApplication")
@@ -229,13 +223,6 @@ open class DuckDuckGoApplication : HasAndroidInjector, Application(), LifecycleO
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
-    protected open fun configureDependencyInjection() {
-        daggerAppComponent = DaggerAppComponent.builder()
-            .application(this)
-            .build()
-        daggerAppComponent.inject(this)
-    }
-
     private fun initializeHttpsUpgrader() {
         thread { httpsUpgrader.reloadData() }
     }
@@ -273,10 +260,6 @@ open class DuckDuckGoApplication : HasAndroidInjector, Application(), LifecycleO
 
     private fun scheduleOfflinePixels() {
         offlinePixelScheduler.scheduleOfflinePixels()
-    }
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)

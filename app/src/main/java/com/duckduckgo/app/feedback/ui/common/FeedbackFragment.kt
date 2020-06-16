@@ -30,11 +30,6 @@ abstract class FeedbackFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         configureListeners()

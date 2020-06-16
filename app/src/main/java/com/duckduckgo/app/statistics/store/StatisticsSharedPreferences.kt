@@ -20,9 +20,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.duckduckgo.app.statistics.model.Atb
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class StatisticsSharedPreferences @Inject constructor(private val context: Context) :
+class StatisticsSharedPreferences @Inject constructor(@ApplicationContext private val context: Context) :
     StatisticsDataStore {
 
     override var variant: String?

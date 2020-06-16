@@ -39,10 +39,12 @@ import com.duckduckgo.app.global.ViewModelFactory
 import com.duckduckgo.app.global.view.show
 import com.duckduckgo.app.statistics.VariantManager
 import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_onboarding_default_browser.*
 import timber.log.Timber
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DefaultBrowserPage : OnboardingPageFragment() {
 
     @Inject
@@ -61,11 +63,6 @@ class DefaultBrowserPage : OnboardingPageFragment() {
     }
 
     override fun layoutResource(): Int = R.layout.content_onboarding_default_browser
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)

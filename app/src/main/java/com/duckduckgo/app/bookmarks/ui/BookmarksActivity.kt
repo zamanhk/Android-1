@@ -42,6 +42,7 @@ import com.duckduckgo.app.global.image.GlideApp
 import com.duckduckgo.app.global.view.gone
 import com.duckduckgo.app.global.view.html
 import com.duckduckgo.app.global.view.show
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_bookmarks.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.android.synthetic.main.view_bookmark_entry.view.*
@@ -56,6 +57,7 @@ import kotlinx.android.synthetic.main.view_bookmark_entry.view.title
 import kotlinx.android.synthetic.main.view_bookmark_entry.view.url
 import timber.log.Timber
 
+@AndroidEntryPoint
 class BookmarksActivity : DuckDuckGoActivity() {
 
     lateinit var adapter: BookmarksAdapter

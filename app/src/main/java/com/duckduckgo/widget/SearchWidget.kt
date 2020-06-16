@@ -30,19 +30,27 @@ import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.WIDGETS_ADDED
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.WIDGETS_DELETED
 import com.duckduckgo.app.systemsearch.SystemSearchActivity
 import com.duckduckgo.app.widget.ui.AppWidgetCapabilities
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Inject
 
 class SearchWidgetLight : SearchWidget(R.layout.search_widget_light)
 
+@EntryPoint
+@InstallIn(ApplicationComponent::class)
+interface SearchWidgetEntryPoint {
+    fun appInstallStore(): AppInstallStore
+    fun pixel(): Pixel
+    fun widgetCapabilities(): AppWidgetCapabilities
+}
+
 open class SearchWidget(val layoutId: Int = R.layout.search_widget) : AppWidgetProvider() {
 
-    @Inject
     lateinit var appInstallStore: AppInstallStore
-
-    @Inject
     lateinit var pixel: Pixel
-
-    @Inject
     lateinit var widgetCapabilities: AppWidgetCapabilities
 
     override fun onReceive(context: Context, intent: Intent?) {
@@ -51,8 +59,13 @@ open class SearchWidget(val layoutId: Int = R.layout.search_widget) : AppWidgetP
     }
 
     private fun inject(context: Context) {
-        val application = context.applicationContext as DuckDuckGoApplication
-        application.daggerAppComponent.inject(this)
+        val appContext = context?.applicationContext ?: throw IllegalStateException()
+        val hiltEntryPoint =
+            EntryPointAccessors.fromApplication(appContext, SearchWidgetEntryPoint::class.java)
+
+        appInstallStore = hiltEntryPoint.appInstallStore()
+        pixel = hiltEntryPoint.pixel()
+        widgetCapabilities = hiltEntryPoint.widgetCapabilities()
     }
 
     override fun onEnabled(context: Context) {

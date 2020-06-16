@@ -20,6 +20,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.edit
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -37,7 +38,7 @@ fun AppInstallStore.daysInstalled(): Long {
     return TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - installTimestamp)
 }
 
-class AppInstallSharedPreferences @Inject constructor(private val context: Context) : AppInstallStore {
+class AppInstallSharedPreferences @Inject constructor(@ApplicationContext private val context: Context) : AppInstallStore {
     override var installTimestamp: Long
         get() = preferences.getLong(KEY_TIMESTAMP_UTC, 0L)
         set(timestamp) = preferences.edit { putLong(KEY_TIMESTAMP_UTC, timestamp) }

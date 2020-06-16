@@ -44,12 +44,14 @@ import com.duckduckgo.app.privacy.ui.PrivacyDashboardActivity
 import com.duckduckgo.app.settings.SettingsActivity
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.tabs.model.TabEntity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_browser.*
 import kotlinx.coroutines.*
 import org.jetbrains.anko.longToast
 import timber.log.Timber
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class BrowserActivity : DuckDuckGoActivity(), CoroutineScope by MainScope() {
 
     @Inject

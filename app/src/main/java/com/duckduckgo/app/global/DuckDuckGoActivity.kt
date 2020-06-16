@@ -28,6 +28,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.settings.db.SettingsDataStore
 import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 abstract class DuckDuckGoActivity : AppCompatActivity() {
@@ -50,13 +51,8 @@ abstract class DuckDuckGoActivity : AppCompatActivity() {
      * So if this method is called from an Activity with daggerInject=false, you'll probably need to call daggerInject() directly.
      */
     fun onCreate(savedInstanceState: Bundle?, daggerInject: Boolean = true) {
-        if (daggerInject) daggerInject()
         themeChangeReceiver = applyTheme()
         super.onCreate(savedInstanceState)
-    }
-
-    protected fun daggerInject() {
-        AndroidInjection.inject(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

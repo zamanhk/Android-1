@@ -22,8 +22,10 @@ import android.os.Bundle
 import com.duckduckgo.app.browser.BrowserActivity
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.global.DuckDuckGoActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
+@AndroidEntryPoint
 class OnboardingActivity : DuckDuckGoActivity() {
 
     private lateinit var viewPageAdapter: PagerAdapter

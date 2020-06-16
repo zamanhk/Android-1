@@ -27,10 +27,12 @@ import com.duckduckgo.app.brokensite.BrokenSiteViewModel.ViewState
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_broken_sites.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.longToast
 
+@AndroidEntryPoint
 class BrokenSiteActivity : DuckDuckGoActivity() {
     private val viewModel: BrokenSiteViewModel by bindViewModel()
 

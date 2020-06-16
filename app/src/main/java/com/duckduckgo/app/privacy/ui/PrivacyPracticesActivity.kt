@@ -31,10 +31,12 @@ import com.duckduckgo.app.privacy.renderer.banner
 import com.duckduckgo.app.privacy.renderer.text
 import com.duckduckgo.app.tabs.model.TabRepository
 import com.duckduckgo.app.tabs.tabId
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_privacy_practices.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class PrivacyPracticesActivity : DuckDuckGoActivity() {
 
     @Inject

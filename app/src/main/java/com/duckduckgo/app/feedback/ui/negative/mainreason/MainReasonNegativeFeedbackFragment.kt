@@ -28,8 +28,10 @@ import com.duckduckgo.app.feedback.ui.common.FeedbackItemDecoration
 import com.duckduckgo.app.feedback.ui.negative.FeedbackType.MainReason
 import com.duckduckgo.app.feedback.ui.negative.FeedbackTypeDisplay
 import com.duckduckgo.app.feedback.ui.negative.FeedbackTypeDisplay.FeedbackTypeMainReasonDisplay
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_feedback_negative_disambiguation_main_reason.*
 
+@AndroidEntryPoint
 class MainReasonNegativeFeedbackFragment : FeedbackFragment() {
     private lateinit var recyclerAdapter: MainReasonAdapter
 

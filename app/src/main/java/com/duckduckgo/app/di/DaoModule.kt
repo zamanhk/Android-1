@@ -19,7 +19,10 @@ package com.duckduckgo.app.di
 import com.duckduckgo.app.global.db.AppDatabase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class DaoModule {
 

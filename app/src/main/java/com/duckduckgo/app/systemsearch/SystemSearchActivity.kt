@@ -41,10 +41,12 @@ import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName
 import com.duckduckgo.app.systemsearch.SystemSearchViewModel.Command.*
 import com.duckduckgo.app.systemsearch.SystemSearchViewModel.SystemSearchResultsViewState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_system_search.*
 import kotlinx.android.synthetic.main.include_system_search_onboarding.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SystemSearchActivity : DuckDuckGoActivity() {
 
     @Inject

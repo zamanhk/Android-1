@@ -22,8 +22,11 @@ import com.duckduckgo.app.referral.*
 import com.duckduckgo.app.statistics.VariantManager
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class PlayStoreReferralModule {
 

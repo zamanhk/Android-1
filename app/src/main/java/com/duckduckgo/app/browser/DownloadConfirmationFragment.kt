@@ -34,6 +34,7 @@ import com.duckduckgo.app.global.view.leftDrawable
 import com.duckduckgo.app.global.view.show
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.download_confirmation.view.*
 import timber.log.Timber
 import java.io.File
@@ -41,6 +42,7 @@ import java.io.IOException
 import javax.inject.Inject
 import kotlin.concurrent.thread
 
+@AndroidEntryPoint
 class DownloadConfirmationFragment : BottomSheetDialogFragment() {
 
     @Inject
@@ -53,11 +55,6 @@ class DownloadConfirmationFragment : BottomSheetDialogFragment() {
     }
 
     private var file: File? = null
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.download_confirmation, container, false)

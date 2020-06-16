@@ -24,8 +24,10 @@ import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.duckduckgo.app.widget.ui.AddWidgetInstructionsViewModel.Command.Close
 import com.duckduckgo.app.widget.ui.AddWidgetInstructionsViewModel.Command.ShowHome
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.include_add_widget_instruction_buttons.*
 
+@AndroidEntryPoint
 class AddWidgetInstructionsActivity : DuckDuckGoActivity() {
 
     private val viewModel: AddWidgetInstructionsViewModel by bindViewModel()

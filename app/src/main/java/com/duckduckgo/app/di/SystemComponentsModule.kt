@@ -27,8 +27,11 @@ import com.duckduckgo.app.systemsearch.InstalledDeviceAppListProvider
 import com.duckduckgo.app.systemsearch.InstalledDeviceAppLookup
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 open class SystemComponentsModule {
 

@@ -38,9 +38,11 @@ import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_CANCELL
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_LAUNCHED
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.WEBSITE
 import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class NotificationHandlerService : IntentService("NotificationHandlerService") {
 
     @Inject
@@ -57,11 +59,6 @@ class NotificationHandlerService : IntentService("NotificationHandlerService") {
 
     @Inject
     lateinit var settingsDataStore: SettingsDataStore
-
-    override fun onCreate() {
-        super.onCreate()
-        AndroidInjection.inject(this)
-    }
 
     @VisibleForTesting
     public override fun onHandleIntent(intent: Intent) {

@@ -37,11 +37,13 @@ import com.duckduckgo.app.global.view.html
 import com.duckduckgo.app.global.view.show
 import com.duckduckgo.app.privacy.model.UserWhitelistedDomain
 import com.duckduckgo.app.privacy.ui.WhitelistViewModel.Command.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_whitelist.*
 import kotlinx.android.synthetic.main.edit_whitelist.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.android.synthetic.main.view_whitelist_entry.view.*
 
+@AndroidEntryPoint
 class WhitelistActivity : DuckDuckGoActivity() {
 
     lateinit var adapter: WhitelistAdapter

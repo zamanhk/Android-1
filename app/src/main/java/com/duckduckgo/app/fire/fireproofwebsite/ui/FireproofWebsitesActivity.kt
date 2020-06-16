@@ -25,9 +25,11 @@ import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.fire.fireproofwebsite.data.FireproofWebsiteEntity
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.duckduckgo.app.global.view.html
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_fireproof_websites.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
+@AndroidEntryPoint
 class FireproofWebsitesActivity : DuckDuckGoActivity() {
 
     lateinit var adapter: FireproofWebsiteAdapter

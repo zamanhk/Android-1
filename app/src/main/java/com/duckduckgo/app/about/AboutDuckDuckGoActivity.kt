@@ -23,9 +23,11 @@ import com.duckduckgo.app.browser.BrowserActivity
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.global.AppUrl.Url
 import com.duckduckgo.app.global.DuckDuckGoActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_about_duck_duck_go.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
+@AndroidEntryPoint
 class AboutDuckDuckGoActivity : DuckDuckGoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

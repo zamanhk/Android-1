@@ -35,10 +35,13 @@ import com.duckduckgo.app.settings.db.SettingsDataStore
 import com.duckduckgo.app.statistics.VariantManager
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [DaoModule::class])
+@InstallIn(ApplicationComponent::class)
+@Module
 class NotificationModule {
 
     @Provides

@@ -22,8 +22,11 @@ import com.duckduckgo.app.trackerdetection.api.ActionJsonAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class JsonModule {
 

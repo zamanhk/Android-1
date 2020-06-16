@@ -30,10 +30,14 @@ import com.duckduckgo.app.statistics.store.OfflinePixelCountDataStore
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Retrofit
 import javax.inject.Named
 import javax.inject.Singleton
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class StatisticsModule {
 
@@ -65,7 +69,7 @@ class StatisticsModule {
     ): OfflinePixelSender = OfflinePixelSender(offlinePixelCountDataStore, uncaughtExceptionRepository, pixel)
 
     @Provides
-    fun deviceInfo(context: Context): DeviceInfo = ContextDeviceInfo(context)
+    fun deviceInfo(@ApplicationContext context: Context): DeviceInfo = ContextDeviceInfo(context)
 
     @Provides
     @Singleton

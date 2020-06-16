@@ -37,11 +37,6 @@ abstract class EnjoymentDialog : DialogFragment() {
         isCancelable = false
     }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
     fun firePixelWithPromptCount(name: Pixel.PixelName) {
         val formattedPixelName = String.format(name.pixelName, promptCount.value)
         pixel.fire(formattedPixelName)

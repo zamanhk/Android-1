@@ -20,7 +20,10 @@ import com.duckduckgo.app.global.file.AndroidFileDeleter
 import com.duckduckgo.app.global.file.FileDeleter
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class FileModule {
 

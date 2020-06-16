@@ -22,9 +22,12 @@ import com.duckduckgo.app.global.db.AppDatabase
 import com.duckduckgo.app.global.db.MigrationsProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
-@Module(includes = [DaoModule::class])
+@InstallIn(ApplicationComponent::class)
+@Module
 class DatabaseModule {
 
     @Provides

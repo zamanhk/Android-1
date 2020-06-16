@@ -32,9 +32,11 @@ import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.SURVEY_SURVEY_DISMIS
 import com.duckduckgo.app.survey.model.Survey
 import com.duckduckgo.app.survey.ui.SurveyViewModel.Command
 import com.duckduckgo.app.survey.ui.SurveyViewModel.Command.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_survey.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SurveyActivity : DuckDuckGoActivity() {
 
     private val viewModel: SurveyViewModel by bindViewModel()
