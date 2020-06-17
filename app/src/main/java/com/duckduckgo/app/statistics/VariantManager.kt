@@ -37,6 +37,7 @@ interface VariantManager {
         object Day1DripB2Notification : VariantFeature()
         object SerpHeaderQueryReplacement : VariantFeature()
         object SerpHeaderRemoval : VariantFeature()
+        object Survey : VariantFeature()
     }
 
     companion object {
@@ -55,34 +56,46 @@ interface VariantManager {
             // Notification Drip Experiment
             Variant(
                 key = "za",
-                weight = 1.0,
+                weight = 0.0,
                 features = listOf(VariantFeature.DripNotification, VariantFeature.Day1PrivacyNotification, VariantFeature.Day3ClearDataNotification),
                 filterBy = { isEnglishLocale() }),
             Variant(
                 key = "zb",
-                weight = 1.0,
+                weight = 0.0,
                 features = listOf(VariantFeature.DripNotification),
                 filterBy = { isEnglishLocale() }),
             Variant(
                 key = "zc",
-                weight = 1.0,
+                weight = 0.0,
                 features = listOf(VariantFeature.DripNotification, VariantFeature.Day1DripA1Notification, VariantFeature.Day3ClearDataNotification),
                 filterBy = { isEnglishLocale() }),
             Variant(
                 key = "zd",
-                weight = 1.0,
+                weight = 0.0,
                 features = listOf(VariantFeature.DripNotification, VariantFeature.Day1DripA2Notification, VariantFeature.Day3ClearDataNotification),
                 filterBy = { isEnglishLocale() }),
             Variant(
                 key = "ze",
-                weight = 1.0,
+                weight = 0.0,
                 features = listOf(VariantFeature.DripNotification, VariantFeature.Day1DripB1Notification, VariantFeature.Day3ClearDataNotification),
                 filterBy = { isEnglishLocale() }),
             Variant(
                 key = "zf",
-                weight = 1.0,
+                weight = 0.0,
                 features = listOf(VariantFeature.DripNotification, VariantFeature.Day1DripB2Notification, VariantFeature.Day3ClearDataNotification),
                 filterBy = { isEnglishLocale() }),
+
+            // Survey experiment
+            Variant(
+                key = "zr",
+                weight = 0.0, //TODO set to 1.0 for release
+                features = emptyList(),
+                filterBy = { noFilter() }),
+            Variant(
+                key = "zs",
+                weight = 1.0,
+                features = listOf(VariantFeature.Survey),
+                filterBy = { noFilter() }),
 
             // Single Search Bar Experiments
             // Disabled until Drip Notifications Experiments are completed

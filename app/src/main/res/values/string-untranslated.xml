@@ -20,6 +20,14 @@
     <string name="downloadManagerIncompatible">Download Manager not available on this device</string>
     <string name="enable">Enable</string>
 
+    <!-- Notification Channel Names -->
+    <!-- Add with others in main strings.xml when translated -->
+    <string name="notificationChannelFeedback">Feedback</string>
+
+    <!-- Survey Notification -->
+    <string name="surveyNotificationTitle">We need your feedback!</string>
+    <string name="surveyNotificationDescription">Tap now to take our survey and help us make DuckDuckGo even better.</string>
+
     <!-- Notifications Drip Experiment -->
     <string name="dripA1Title">How anonymous is DuckDuckGo?</string>
     <string name="dripA2Title">Tired of being tracked online? We can help.</string>

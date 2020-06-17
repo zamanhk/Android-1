@@ -25,10 +25,7 @@ import com.duckduckgo.app.global.view.ClearDataAction
 import com.duckduckgo.app.job.ConfigurationDownloader
 import com.duckduckgo.app.notification.NotificationFactory
 import com.duckduckgo.app.notification.db.NotificationDao
-import com.duckduckgo.app.notification.model.AppFeatureNotification
-import com.duckduckgo.app.notification.model.WebsiteNotification
-import com.duckduckgo.app.notification.model.ClearDataNotification
-import com.duckduckgo.app.notification.model.PrivacyProtectionNotification
+import com.duckduckgo.app.notification.model.*
 import com.duckduckgo.app.settings.db.SettingsDataStore
 import com.duckduckgo.app.statistics.api.OfflinePixelSender
 import com.duckduckgo.app.statistics.pixels.Pixel
@@ -62,6 +59,7 @@ class WorkerModule {
         clearDataNotification: ClearDataNotification,
         privacyProtectionNotification: PrivacyProtectionNotification,
         configurationDownloader: ConfigurationDownloader,
+        surveyNotification: SurveyNotification,
         @Named("dripA1Notification") dripA1Notification: WebsiteNotification,
         @Named("dripA2Notification") dripA2Notification: WebsiteNotification,
         @Named("dripB1Notification") dripB1Notification: AppFeatureNotification,
@@ -78,6 +76,7 @@ class WorkerModule {
             clearDataNotification,
             privacyProtectionNotification,
             configurationDownloader,
+            surveyNotification,
             dripA1Notification,
             dripA2Notification,
             dripB1Notification,

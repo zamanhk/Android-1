@@ -29,6 +29,7 @@ import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEv
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.APP_LAUNCH
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.CANCEL
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.CLEAR_DATA_LAUNCH
+import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.SURVEY_LAUNCH
 import com.duckduckgo.app.notification.model.NotificationSpec
 import com.duckduckgo.app.notification.model.WebsiteNotificationSpecification
 import com.duckduckgo.app.settings.SettingsActivity
@@ -69,6 +70,7 @@ class NotificationHandlerService : IntentService("NotificationHandlerService") {
         when (intent.type) {
             APP_LAUNCH -> onAppLaunched(pixelSuffix)
             CLEAR_DATA_LAUNCH -> onClearDataLaunched(pixelSuffix)
+            SURVEY_LAUNCH  -> onSurveyLaunched(pixelSuffix)
             CANCEL -> onCancelled(pixelSuffix)
             WEBSITE -> onWebsiteNotification(intent, pixelSuffix)
             CHANGE_ICON_FEATURE -> onCustomizeIconLaunched(pixelSuffix)
@@ -115,6 +117,15 @@ class NotificationHandlerService : IntentService("NotificationHandlerService") {
         pixel.fire("${NOTIFICATION_LAUNCHED.pixelName}_$pixelSuffix")
     }
 
+    private fun onSurveyLaunched(pixelSuffix: String) {
+        Timber.i("Survey Launched!")
+        val intent = SettingsActivity.intent(context)
+        TaskStackBuilder.create(context)
+            .addNextIntentWithParentStack(intent)
+            .startActivities()
+        pixel.fire("${NOTIFICATION_LAUNCHED.pixelName}_$pixelSuffix")
+    }
+
     private fun onCancelled(pixelSuffix: String) {
         pixel.fire("${NOTIFICATION_CANCELLED.pixelName}_$pixelSuffix")
     }
@@ -131,6 +142,7 @@ class NotificationHandlerService : IntentService("NotificationHandlerService") {
     object NotificationEvent {
         const val APP_LAUNCH = "com.duckduckgo.notification.launch.app"
         const val CLEAR_DATA_LAUNCH = "com.duckduckgo.notification.launch.clearData"
+        const val SURVEY_LAUNCH = "com.duckduckgo.notification.launch.survey"
         const val CANCEL = "com.duckduckgo.notification.cancel"
         const val WEBSITE = "com.duckduckgo.notification.website"
         const val CHANGE_ICON_FEATURE = "com.duckduckgo.notification.app.feature.changeIcon"

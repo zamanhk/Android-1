@@ -23,14 +23,9 @@ import androidx.work.*
 import com.duckduckgo.app.notification.db.NotificationDao
 import com.duckduckgo.app.notification.model.Notification
 import com.duckduckgo.app.notification.model.SchedulableNotification
+import com.duckduckgo.app.notification.model.SurveyNotification
 import com.duckduckgo.app.statistics.VariantManager
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.DripNotification
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.Day1DripB2Notification
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.Day1DripB1Notification
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.Day1DripA2Notification
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.Day1DripA1Notification
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.Day1PrivacyNotification
-import com.duckduckgo.app.statistics.VariantManager.VariantFeature.Day3ClearDataNotification
+import com.duckduckgo.app.statistics.VariantManager.VariantFeature.*
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_SHOWN
 import timber.log.Timber
@@ -47,6 +42,7 @@ class NotificationScheduler(
     private val workManager: WorkManager,
     private val clearDataNotification: SchedulableNotification,
     private val privacyNotification: SchedulableNotification,
+    private val surveyNotification: SurveyNotification,
     private val dripA1Notification: SchedulableNotification,
     private val dripA2Notification: SchedulableNotification,
     private val dripB1Notification: SchedulableNotification,
@@ -60,6 +56,13 @@ class NotificationScheduler(
 
     private suspend fun scheduleInactiveUserNotifications() {
         workManager.cancelAllWorkByTag(UNUSED_APP_WORK_REQUEST_TAG)
+
+        when {
+            variant().hasFeature(VariantManager.VariantFeature.Survey) && surveyNotification.canShow() -> {
+                scheduleNotification(OneTimeWorkRequestBuilder<SurveyNotificationWorker>(), 1, TimeUnit.MINUTES, SURVEY_WORK_REQUEST_TAG)
+                surveyNotification.scheduled()
+            }
+        }
 
         when {
             variant().hasFeature(Day1DripA1Notification) && dripA1Notification.canShow() -> {
@@ -109,13 +112,16 @@ class NotificationScheduler(
     class ShowClearDataNotification(context: Context, params: WorkerParameters) : ClearDataNotificationWorker(context, params)
 
     open class ClearDataNotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params)
+    class SurveyNotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params, cancelable = false)
+
     class PrivacyNotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params)
     class DripA1NotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params)
     class DripA2NotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params)
     class DripB1NotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params)
     class DripB2NotificationWorker(context: Context, params: WorkerParameters) : SchedulableNotificationWorker(context, params)
 
-    open class SchedulableNotificationWorker(val context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
+    open class SchedulableNotificationWorker(val context: Context, params: WorkerParameters, val cancelable: Boolean = true) :
+        CoroutineWorker(context, params) {
 
         lateinit var manager: NotificationManagerCompat
         lateinit var factory: NotificationFactory
@@ -125,7 +131,7 @@ class NotificationScheduler(
 
         override suspend fun doWork(): Result {
 
-            if (!notification.canShow()) {
+            if (cancelable && !notification.canShow()) {
                 Timber.v("Notification no longer showable")
                 return Result.success()
             }
@@ -134,7 +140,7 @@ class NotificationScheduler(
             val launchIntent = NotificationHandlerService.pendingNotificationHandlerIntent(context, notification.launchIntent, specification)
             val cancelIntent = NotificationHandlerService.pendingNotificationHandlerIntent(context, notification.cancelIntent, specification)
             val systemNotification = factory.createNotification(specification, launchIntent, cancelIntent)
-            notificationDao.insert(Notification(notification.id))
+            notificationDao.insert(Notification(notification.id)) // TODO move into notification for self management
             manager.notify(specification.systemId, systemNotification)
 
             pixel.fire("${NOTIFICATION_SHOWN.pixelName}_${specification.pixelSuffix}")
@@ -144,5 +150,6 @@ class NotificationScheduler(
 
     companion object {
         const val UNUSED_APP_WORK_REQUEST_TAG = "com.duckduckgo.notification.schedule"
+        const val SURVEY_WORK_REQUEST_TAG = "com.duckduckgo.notification.schedule.survey"
     }
 }

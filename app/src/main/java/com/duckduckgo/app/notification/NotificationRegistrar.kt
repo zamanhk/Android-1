@@ -50,6 +50,7 @@ class NotificationRegistrar @Inject constructor(
         const val PrivacyProtection = 101
         const val Article = 103 // 102 was used for the search notification hence using 103 moving forward
         const val AppFeature = 104
+        const val Survey = 105
     }
 
     object ChannelType {
@@ -68,12 +69,18 @@ class NotificationRegistrar @Inject constructor(
             R.string.notificationChannelTutorials,
             NotificationManagerCompat.IMPORTANCE_DEFAULT
         )
+        val FEEDBACK = Channel(
+            "com.duckduckgo.feedback",
+            R.string.notificationChannelFeedback,
+            NotificationManagerCompat.IMPORTANCE_DEFAULT
+        )
     }
 
     private val channels = (listOf(
         ChannelType.FILE_DOWNLOADING,
         ChannelType.FILE_DOWNLOADED,
-        ChannelType.TUTORIALS
+        ChannelType.TUTORIALS,
+        ChannelType.FEEDBACK
     ))
 
     fun registerApp() {

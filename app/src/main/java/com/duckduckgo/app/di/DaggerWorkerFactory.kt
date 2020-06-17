@@ -26,17 +26,9 @@ import com.duckduckgo.app.global.job.AppConfigurationWorker
 import com.duckduckgo.app.global.view.ClearDataAction
 import com.duckduckgo.app.job.ConfigurationDownloader
 import com.duckduckgo.app.notification.NotificationFactory
-import com.duckduckgo.app.notification.NotificationScheduler.ClearDataNotificationWorker
-import com.duckduckgo.app.notification.NotificationScheduler.PrivacyNotificationWorker
-import com.duckduckgo.app.notification.NotificationScheduler.DripA1NotificationWorker
-import com.duckduckgo.app.notification.NotificationScheduler.DripA2NotificationWorker
-import com.duckduckgo.app.notification.NotificationScheduler.DripB1NotificationWorker
-import com.duckduckgo.app.notification.NotificationScheduler.DripB2NotificationWorker
+import com.duckduckgo.app.notification.NotificationScheduler.*
 import com.duckduckgo.app.notification.db.NotificationDao
-import com.duckduckgo.app.notification.model.AppFeatureNotification
-import com.duckduckgo.app.notification.model.WebsiteNotification
-import com.duckduckgo.app.notification.model.ClearDataNotification
-import com.duckduckgo.app.notification.model.PrivacyProtectionNotification
+import com.duckduckgo.app.notification.model.*
 import com.duckduckgo.app.settings.db.SettingsDataStore
 import com.duckduckgo.app.statistics.api.OfflinePixelScheduler
 import com.duckduckgo.app.statistics.api.OfflinePixelSender
@@ -53,6 +45,7 @@ class DaggerWorkerFactory(
     private val clearDataNotification: ClearDataNotification,
     private val privacyProtectionNotification: PrivacyProtectionNotification,
     private val configurationDownloader: ConfigurationDownloader,
+    private val surveyNotification: SurveyNotification,
     private val dripA1Notification: WebsiteNotification,
     private val dripA2Notification: WebsiteNotification,
     private val dripB1Notification: AppFeatureNotification,
@@ -73,6 +66,7 @@ class DaggerWorkerFactory(
                 is ClearDataNotificationWorker -> injectClearDataNotificationWorker(instance)
                 is PrivacyNotificationWorker -> injectPrivacyNotificationWorker(instance)
                 is AppConfigurationWorker -> injectAppConfigurationWorker(instance)
+                is SurveyNotificationWorker -> injectSurveyWorker(instance)
                 is DripA1NotificationWorker -> injectDripA1NotificationWorker(instance)
                 is DripA2NotificationWorker -> injectDripA2NotificationWorker(instance)
                 is DripB1NotificationWorker -> injectDripB1NotificationWorker(instance)
@@ -115,6 +109,14 @@ class DaggerWorkerFactory(
         worker.factory = notificationFactory
         worker.pixel = pixel
         worker.notification = privacyProtectionNotification
+    }
+
+    private fun injectSurveyWorker(worker: SurveyNotificationWorker) {
+        worker.manager = notificationManager
+        worker.notificationDao = notificationDao
+        worker.factory = notificationFactory
+        worker.pixel = pixel
+        worker.notification = surveyNotification
     }
 
     private fun injectDripA1NotificationWorker(worker: DripA1NotificationWorker) {
