@@ -25,6 +25,7 @@ import com.duckduckgo.app.browser.BuildConfig
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.global.shortcut.AppShortcutCreator
 import com.duckduckgo.app.icon.api.IconModifier.Companion.QUALIFIER
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 interface IconModifier {
@@ -77,7 +78,7 @@ enum class AppIcon(
 }
 
 class AppIconModifier @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val appShortcutCreator: AppShortcutCreator
 ) : IconModifier {
 

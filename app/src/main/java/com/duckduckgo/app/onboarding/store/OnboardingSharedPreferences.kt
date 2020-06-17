@@ -19,9 +19,10 @@ package com.duckduckgo.app.onboarding.store
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class OnboardingSharedPreferences @Inject constructor(private val context: Context) : OnboardingStore {
+class OnboardingSharedPreferences @Inject constructor(@ApplicationContext private val context: Context) : OnboardingStore {
 
     override var onboardingDialogJourney: String?
         get() = preferences.getString(ONBOARDING_JOURNEY, null)

@@ -29,6 +29,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -37,7 +38,7 @@ open class SystemComponentsModule {
 
     @Singleton
     @Provides
-    fun packageManager(context: Context): PackageManager = context.packageManager
+    fun packageManager(@ApplicationContext context: Context): PackageManager = context.packageManager
 
     @Singleton
     @Provides
@@ -48,6 +49,6 @@ open class SystemComponentsModule {
     fun deviceAppLookup(deviceAppListProvider: DeviceAppListProvider): DeviceAppLookup = InstalledDeviceAppLookup(deviceAppListProvider)
 
     @Provides
-    fun appIconModifier(context: Context, appShortcutCreator: AppShortcutCreator): IconModifier =
+    fun appIconModifier(@ApplicationContext context: Context, appShortcutCreator: AppShortcutCreator): IconModifier =
         AppIconModifier(context, appShortcutCreator)
 }

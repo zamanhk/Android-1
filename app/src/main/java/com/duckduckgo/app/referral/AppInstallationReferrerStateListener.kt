@@ -28,6 +28,7 @@ import com.duckduckgo.app.playstore.PlayStoreAndroidUtils.Companion.PLAY_STORE_R
 import com.duckduckgo.app.referral.ParseFailureReason.*
 import com.duckduckgo.app.referral.ParsedReferrerResult.*
 import com.duckduckgo.app.statistics.VariantManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.delay
 import timber.log.Timber
 import javax.inject.Inject
@@ -44,7 +45,7 @@ interface AppInstallationReferrerStateListener {
 }
 
 class PlayStoreAppReferrerStateListener @Inject constructor(
-    val context: Context,
+    @ApplicationContext val context: Context,
     private val packageManager: PackageManager,
     private val appInstallationReferrerParser: AppInstallationReferrerParser,
     private val appReferrerDataStore: AppReferrerDataStore,

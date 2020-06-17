@@ -33,7 +33,6 @@ import com.duckduckgo.app.global.view.gone
 import com.duckduckgo.app.global.view.leftDrawable
 import com.duckduckgo.app.global.view.show
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.android.support.AndroidSupportInjection
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.download_confirmation.view.*
 import timber.log.Timber

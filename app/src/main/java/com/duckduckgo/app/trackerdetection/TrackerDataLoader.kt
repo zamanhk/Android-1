@@ -24,6 +24,7 @@ import com.duckduckgo.app.trackerdetection.api.TdsJson
 import com.duckduckgo.app.trackerdetection.db.*
 import com.duckduckgo.app.trackerdetection.model.TdsMetadata
 import com.squareup.moshi.Moshi
+import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -35,7 +36,7 @@ class TrackerDataLoader @Inject constructor(
     private val tdsDomainEntityDao: TdsDomainEntityDao,
     private val tempWhitelistDao: TemporaryTrackingWhitelistDao,
     private val tdsMetadataDao: TdsMetadataDao,
-    private val context: Context,
+    @ApplicationContext  private val context: Context,
     private val appDatabase: AppDatabase,
     private val moshi: Moshi
 ) {

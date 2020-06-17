@@ -23,7 +23,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import com.duckduckgo.app.browser.R
-import com.duckduckgo.app.global.DuckDuckGoApplication
 import com.duckduckgo.app.global.install.AppInstallStore
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.WIDGETS_ADDED
@@ -32,10 +31,8 @@ import com.duckduckgo.app.systemsearch.SystemSearchActivity
 import com.duckduckgo.app.widget.ui.AppWidgetCapabilities
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.android.components.ApplicationComponent
-import javax.inject.Inject
 
 class SearchWidgetLight : SearchWidget(R.layout.search_widget_light)
 

@@ -21,6 +21,7 @@ import android.webkit.WebBackForwardList
 import android.webkit.WebView
 import androidx.test.annotation.UiThreadTest
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -44,7 +45,7 @@ class WebViewBackForwardListSafeExtractorTest {
     }
 }
 
-class TestWebViewThrowsNullPointerException(context: Context) : WebView(context) {
+class TestWebViewThrowsNullPointerException(@ApplicationContext context: Context) : WebView(context) {
 
     override fun copyBackForwardList(): WebBackForwardList {
         throw NullPointerException("Deliberate")

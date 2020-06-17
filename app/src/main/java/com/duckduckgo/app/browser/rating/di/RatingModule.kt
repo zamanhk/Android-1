@@ -30,6 +30,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -67,13 +68,13 @@ class RatingModule {
         searchCountDao: SearchCountDao,
         @Named(INITIAL_PROMPT_DECIDER_NAME) initialPromptDecider: ShowPromptDecider,
         @Named(SECONDARY_PROMPT_DECIDER_NAME) secondaryPromptDecider: ShowPromptDecider,
-        context: Context
+        @ApplicationContext context: Context
     ): PromptTypeDecider {
         return InitialPromptTypeDecider(playStoreUtils, searchCountDao, initialPromptDecider, secondaryPromptDecider, context)
     }
 
     @Provides
-    fun playStoreUtils(context: Context): PlayStoreUtils {
+    fun playStoreUtils(@ApplicationContext context: Context): PlayStoreUtils {
         return PlayStoreAndroidUtils(context)
     }
 

@@ -25,6 +25,7 @@ import androidx.annotation.AnyThread
 import androidx.core.app.NotificationCompat
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.notification.NotificationRegistrar.ChannelType
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.runOnUiThread
 import javax.inject.Inject
@@ -32,7 +33,7 @@ import javax.inject.Inject
 @AnyThread
 class FileDownloadNotificationManager @Inject constructor(
     private val notificationManager: NotificationManager,
-    private val applicationContext: Context
+    @ApplicationContext private val applicationContext: Context
 ) {
 
     fun showDownloadInProgressNotification() {

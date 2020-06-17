@@ -28,11 +28,12 @@ import androidx.core.app.NotificationManagerCompat
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.settings.db.SettingsDataStore
 import com.duckduckgo.app.statistics.pixels.Pixel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import javax.inject.Inject
 
 class NotificationRegistrar @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val manager: NotificationManager,
     private val compatManager: NotificationManagerCompat,
     private val settingsDataStore: SettingsDataStore,

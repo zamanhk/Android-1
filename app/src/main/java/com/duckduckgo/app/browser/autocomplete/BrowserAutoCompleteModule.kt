@@ -23,12 +23,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @InstallIn(ApplicationComponent::class)
 @Module
 class BrowserAutoCompleteModule {
 
     @Provides
-    fun settingsDataStore(context: Context): SettingsDataStore = SettingsSharedPreferences(context)
+    fun settingsDataStore(@ApplicationContext context: Context): SettingsDataStore = SettingsSharedPreferences(context)
 
 }

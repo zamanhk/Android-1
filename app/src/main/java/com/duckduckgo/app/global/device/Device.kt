@@ -20,6 +20,7 @@ import android.content.Context
 import android.telephony.TelephonyManager
 import android.util.TypedValue
 import com.duckduckgo.app.browser.BuildConfig
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 import javax.inject.Inject
 
@@ -41,7 +42,7 @@ interface DeviceInfo {
     fun formFactor(): FormFactor
 }
 
-class ContextDeviceInfo @Inject constructor(private val context: Context) : DeviceInfo {
+class ContextDeviceInfo @Inject constructor(@ApplicationContext private val context: Context) : DeviceInfo {
 
     override val appVersion = BuildConfig.VERSION_NAME
 

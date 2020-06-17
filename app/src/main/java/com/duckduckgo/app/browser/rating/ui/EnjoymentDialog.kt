@@ -16,12 +16,10 @@
 
 package com.duckduckgo.app.browser.rating.ui
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.duckduckgo.app.global.rating.PromptCount
 import com.duckduckgo.app.statistics.pixels.Pixel
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 abstract class EnjoymentDialog : DialogFragment() {

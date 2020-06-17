@@ -53,6 +53,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -89,12 +90,12 @@ class BrowserModule {
     }
 
     @Provides
-    fun webViewLongPressHandler(context: Context, pixel: Pixel): LongPressHandler {
+    fun webViewLongPressHandler(@ApplicationContext context: Context, pixel: Pixel): LongPressHandler {
         return WebViewLongPressHandler(context, pixel)
     }
 
     @Provides
-    fun defaultWebBrowserCapability(context: Context): DefaultBrowserDetector {
+    fun defaultWebBrowserCapability(@ApplicationContext context: Context): DefaultBrowserDetector {
         return AndroidDefaultBrowserDetector(context)
     }
 
@@ -114,7 +115,7 @@ class BrowserModule {
     @Singleton
     @Provides
     fun webDataManager(
-        context: Context,
+        @ApplicationContext context: Context,
         webViewSessionStorage: WebViewSessionStorage,
         cookieManager: DuckDuckGoCookieManager,
         fileDeleter: FileDeleter
@@ -122,12 +123,12 @@ class BrowserModule {
         WebViewDataManager(context, webViewSessionStorage, cookieManager, fileDeleter)
 
     @Provides
-    fun clipboardManager(context: Context): ClipboardManager {
+    fun clipboardManager(@ApplicationContext context: Context): ClipboardManager {
         return context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     }
 
     @Provides
-    fun addToHomeCapabilityDetector(context: Context): AddToHomeCapabilityDetector {
+    fun addToHomeCapabilityDetector(@ApplicationContext context: Context): AddToHomeCapabilityDetector {
         return AddToHomeSystemCapabilityDetector(context)
     }
 
@@ -171,7 +172,7 @@ class BrowserModule {
     }
 
     @Provides
-    fun webViewDatabaseLocator(context: Context): WebViewDatabaseLocator = WebViewDatabaseLocator(context)
+    fun webViewDatabaseLocator(@ApplicationContext context: Context): WebViewDatabaseLocator = WebViewDatabaseLocator(context)
 
     @Provides
     fun getCookieHostsToPreserve(fireproofWebsiteDao: FireproofWebsiteDao): GetCookieHostsToPreserve = GetCookieHostsToPreserve(fireproofWebsiteDao)
@@ -191,13 +192,13 @@ class BrowserModule {
 
     @Singleton
     @Provides
-    fun gridViewColumnCalculator(context: Context): GridViewColumnCalculator {
+    fun gridViewColumnCalculator(@ApplicationContext context: Context): GridViewColumnCalculator {
         return GridViewColumnCalculator(context)
     }
 
     @Singleton
     @Provides
-    fun webViewPreviewPersister(context: Context, fileDeleter: FileDeleter): WebViewPreviewPersister {
+    fun webViewPreviewPersister(@ApplicationContext context: Context, fileDeleter: FileDeleter): WebViewPreviewPersister {
         return FileBasedWebViewPreviewPersister(context, fileDeleter)
     }
 

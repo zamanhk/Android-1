@@ -82,16 +82,17 @@ class BrowserActivity : DuckDuckGoActivity(), CoroutineScope by MainScope() {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.daggerInject()
 
         renderer = BrowserStateRenderer()
 
-        Timber.i("onCreate called. freshAppLaunch: ${dataClearer.isFreshAppLaunch}, savedInstanceState: $savedInstanceState")
+        // Timber.i("onCreate called. freshAppLaunch: ${dataClearer.isFreshAppLaunch}, savedInstanceState: $savedInstanceState")
+        //
+        // val newInstanceState = if (dataClearer.isFreshAppLaunch) null else savedInstanceState
+        // instanceStateBundles = CombinedInstanceState(originalInstanceState = savedInstanceState, newInstanceState = newInstanceState)
+        // super.onCreate(savedInstanceState = newInstanceState, daggerInject = false)
 
-        val newInstanceState = if (dataClearer.isFreshAppLaunch) null else savedInstanceState
-        instanceStateBundles = CombinedInstanceState(originalInstanceState = savedInstanceState, newInstanceState = newInstanceState)
+        super.onCreate(savedInstanceState)
 
-        super.onCreate(savedInstanceState = newInstanceState, daggerInject = false)
         setContentView(R.layout.activity_browser)
         viewModel.viewState.observe(this, Observer {
             renderer.renderBrowserViewState(it)

@@ -27,7 +27,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.settings.db.SettingsDataStore
-import dagger.android.AndroidInjection
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

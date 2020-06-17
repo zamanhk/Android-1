@@ -19,9 +19,14 @@ package com.duckduckgo.app.di
 import com.duckduckgo.app.job.ConfigurationDownloader
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.testing.UninstallModules
 import io.reactivex.Completable
 
 @Module
+@UninstallModules(AppConfigurationDownloaderModule::class)
+@InstallIn(ApplicationComponent::class)
 class StubAppConfigurationDownloadModule {
 
     @Provides

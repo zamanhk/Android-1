@@ -19,7 +19,6 @@ package com.duckduckgo.app.integration
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.duckduckgo.app.InstantSchedulersRule
-import com.duckduckgo.app.getDaggerComponent
 import com.duckduckgo.app.statistics.Variant
 import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.api.StatisticsRequester
@@ -29,10 +28,15 @@ import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import com.duckduckgo.app.statistics.store.StatisticsSharedPreferences
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.RuleChain
+import retrofit2.Retrofit
+import javax.inject.Inject
 
 /**
  * These tests communicate with the server and therefore will be slowed down if there is slow internet access.
@@ -41,6 +45,7 @@ import org.junit.Test
  * Would normally have separate tests for each assertion, but these tests are relatively expensive to run.
  */
 @LargeTest
+@HiltAndroidTest
 class AtbIntegrationTest {
 
     private lateinit var mockVariantManager: VariantManager
@@ -48,17 +53,28 @@ class AtbIntegrationTest {
     private lateinit var testee: StatisticsRequester
     private lateinit var statisticsStore: StatisticsDataStore
 
+    @Inject
+    lateinit var retrofit: Retrofit
+
+    val hiltAndroidRule = HiltAndroidRule(this)
+
     @get:Rule
-    val schedulers = InstantSchedulersRule()
+    var rule = RuleChain.outerRule(hiltAndroidRule)
+    .around(InstantSchedulersRule())
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     @Before
     fun before() {
+        hiltAndroidRule.inject()
+
         mockVariantManager = mock()
         statisticsStore = StatisticsSharedPreferences(InstrumentationRegistry.getInstrumentation().targetContext)
         statisticsStore.clearAtb()
 
         whenever(mockVariantManager.getVariant()).thenReturn(Variant("ma", 100.0, filterBy = { true }))
-        service = getDaggerComponent().retrofit().create(StatisticsService::class.java)
+        service = retrofit.create(StatisticsService::class.java)
         testee = StatisticsRequester(statisticsStore, service, mockVariantManager)
     }
 

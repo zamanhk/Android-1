@@ -108,7 +108,7 @@ class NetworkModule {
     }
 
     @Provides
-    fun apiRequestInterceptor(context: Context): ApiRequestInterceptor {
+    fun apiRequestInterceptor(@ApplicationContext context: Context): ApiRequestInterceptor {
         return ApiRequestInterceptor(context)
     }
 

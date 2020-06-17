@@ -23,9 +23,10 @@ import android.webkit.CookieManager
 import androidx.core.net.toUri
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.browser.downloader.FileDownloader.PendingFileDownload
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class NetworkFileDownloader @Inject constructor(private val context: Context) {
+class NetworkFileDownloader @Inject constructor(@ApplicationContext private val context: Context) {
 
     fun download(pendingDownload: PendingFileDownload, callback: FileDownloader.FileDownloadListener) {
 

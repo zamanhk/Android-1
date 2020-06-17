@@ -24,6 +24,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -32,14 +33,14 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(context: Context, migrationsProvider: MigrationsProvider): AppDatabase {
+    fun provideDatabase(@ApplicationContext context: Context, migrationsProvider: MigrationsProvider): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "app.db")
             .addMigrations(*migrationsProvider.ALL_MIGRATIONS.toTypedArray())
             .build()
     }
 
     @Provides
-    fun provideDatabaseMigrations(context: Context): MigrationsProvider {
+    fun provideDatabaseMigrations(@ApplicationContext context: Context): MigrationsProvider {
         return MigrationsProvider(context)
     }
 }

@@ -18,6 +18,7 @@ package com.duckduckgo.app.browser.addtohome
 
 import android.content.Context
 import androidx.core.content.pm.ShortcutManagerCompat
+import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -25,7 +26,7 @@ interface AddToHomeCapabilityDetector {
     fun isAddToHomeSupported(): Boolean
 }
 
-class AddToHomeSystemCapabilityDetector @Inject constructor(val context: Context) : AddToHomeCapabilityDetector {
+class AddToHomeSystemCapabilityDetector @Inject constructor(@ApplicationContext val context: Context) : AddToHomeCapabilityDetector {
 
     override fun isAddToHomeSupported(): Boolean {
         val supported = ShortcutManagerCompat.isRequestPinShortcutSupported(context)

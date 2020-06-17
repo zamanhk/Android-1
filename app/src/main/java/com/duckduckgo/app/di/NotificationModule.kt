@@ -37,6 +37,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -46,25 +47,25 @@ class NotificationModule {
 
     @Provides
     @Singleton
-    fun provideNotificationManager(context: Context): NotificationManager {
+    fun provideNotificationManager(@ApplicationContext context: Context): NotificationManager {
         return context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
 
     @Provides
     @Singleton
-    fun provideNotificationManagerCompat(context: Context): NotificationManagerCompat {
+    fun provideNotificationManagerCompat(@ApplicationContext context: Context): NotificationManagerCompat {
         return NotificationManagerCompat.from(context)
     }
 
     @Provides
     @Singleton
-    fun provideLocalBroadcastManager(context: Context): LocalBroadcastManager {
+    fun provideLocalBroadcastManager(@ApplicationContext context: Context): LocalBroadcastManager {
         return LocalBroadcastManager.getInstance(context)
     }
 
     @Provides
     fun provideClearDataNotification(
-        context: Context,
+        @ApplicationContext context: Context,
         notificationDao: NotificationDao,
         settingsDataStore: SettingsDataStore
     ): ClearDataNotification {
@@ -73,7 +74,7 @@ class NotificationModule {
 
     @Provides
     fun providePrivacyProtectionNotification(
-        context: Context,
+        @ApplicationContext context: Context,
         notificationDao: NotificationDao,
         privacyProtectionCountDao: PrivacyProtectionCountDao
     ): PrivacyProtectionNotification {
@@ -83,7 +84,7 @@ class NotificationModule {
     @Provides
     @Named("dripA1Notification")
     fun provideDripA1Notification(
-        context: Context,
+        @ApplicationContext context: Context,
         notificationDao: NotificationDao
     ): WebsiteNotification {
         return WebsiteNotification(
@@ -99,7 +100,7 @@ class NotificationModule {
     @Provides
     @Named("dripA2Notification")
     fun provideDripA2Notification(
-        context: Context,
+        @ApplicationContext context: Context,
         notificationDao: NotificationDao
     ): WebsiteNotification {
         return WebsiteNotification(
@@ -115,7 +116,7 @@ class NotificationModule {
     @Provides
     @Named("dripB1Notification")
     fun provideADripB1Notification(
-        context: Context,
+        @ApplicationContext context: Context,
         notificationDao: NotificationDao
     ): AppFeatureNotification {
         return AppFeatureNotification(
@@ -131,7 +132,7 @@ class NotificationModule {
     @Provides
     @Named("dripB2Notification")
     fun provideADripB2Notification(
-        context: Context,
+        @ApplicationContext context: Context,
         notificationDao: NotificationDao
     ): AppFeatureNotification {
         return AppFeatureNotification(
@@ -169,7 +170,7 @@ class NotificationModule {
 
     @Provides
     @Singleton
-    fun providesNotificationFactory(context: Context, manager: NotificationManagerCompat): NotificationFactory {
+    fun providesNotificationFactory(@ApplicationContext context: Context, manager: NotificationManagerCompat): NotificationFactory {
         return NotificationFactory(context, manager)
     }
 }

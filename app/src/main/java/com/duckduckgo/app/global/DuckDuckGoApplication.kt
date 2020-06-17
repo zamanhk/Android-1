@@ -51,9 +51,6 @@ import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import com.duckduckgo.app.surrogates.ResourceSurrogateLoader
 import com.duckduckgo.app.trackerdetection.TrackerDataLoader
 import com.duckduckgo.app.usage.app.AppDaysUsedRecorder
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
 import dagger.hilt.android.HiltAndroidApp
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
@@ -66,7 +63,7 @@ import javax.inject.Inject
 import kotlin.concurrent.thread
 
 @HiltAndroidApp
-open class DuckDuckGoApplication : Application(), LifecycleObserver {
+class DuckDuckGoApplication : Application() {
 
     @Inject
     lateinit var trackerDataLoader: TrackerDataLoader
@@ -159,7 +156,7 @@ open class DuckDuckGoApplication : Application(), LifecycleObserver {
         if (appIsRestarting()) return
 
         ProcessLifecycleOwner.get().lifecycle.also {
-            it.addObserver(this)
+            // it.addObserver(this)
             it.addObserver(dataClearer)
             it.addObserver(appDaysUsedRecorder)
             it.addObserver(defaultBrowserObserver)

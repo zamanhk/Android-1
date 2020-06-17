@@ -28,6 +28,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -36,7 +37,7 @@ class JobsModule {
 
     @Singleton
     @Provides
-    fun providesJobScheduler(context: Context): JobScheduler {
+    fun providesJobScheduler(@ApplicationContext context: Context): JobScheduler {
         return context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
     }
 

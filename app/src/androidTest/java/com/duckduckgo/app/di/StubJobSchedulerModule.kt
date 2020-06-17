@@ -27,9 +27,14 @@ import com.duckduckgo.app.job.WorkScheduler
 import com.duckduckgo.app.notification.AndroidNotificationScheduler
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.testing.UninstallModules
 import javax.inject.Singleton
 
 @Module
+@UninstallModules(JobsModule::class)
+@InstallIn(ApplicationComponent::class)
 class StubJobSchedulerModule {
 
     @Singleton

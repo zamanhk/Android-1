@@ -21,13 +21,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @InstallIn(ApplicationComponent::class)
 @Module
 class FaviconModule {
 
     @Provides
-    fun faviconDownloader(context: Context): FaviconDownloader {
+    fun faviconDownloader(@ApplicationContext context: Context): FaviconDownloader {
         return GlideFaviconDownloader(context)
     }
 }

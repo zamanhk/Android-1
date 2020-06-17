@@ -21,14 +21,20 @@ import androidx.room.Room
 import com.duckduckgo.app.global.db.AppDatabase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.testing.UninstallModules
 import javax.inject.Singleton
 
-@Module(includes = [DaoModule::class])
+@Module
+@UninstallModules(DatabaseModule::class)
+@InstallIn(ApplicationComponent::class)
 class StubDatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(context: Context): AppDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             .allowMainThreadQueries()
             .build()

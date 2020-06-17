@@ -36,6 +36,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -45,7 +46,7 @@ class WorkerModule {
 
     @Provides
     @Singleton
-    fun workManager(context: Context, workerFactory: WorkerFactory): WorkManager {
+    fun workManager(@ApplicationContext context: Context, workerFactory: WorkerFactory): WorkManager {
         val config = Configuration.Builder()
             .setWorkerFactory(workerFactory)
             .build()

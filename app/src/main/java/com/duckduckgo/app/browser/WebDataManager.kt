@@ -24,6 +24,7 @@ import android.webkit.WebViewDatabase
 import com.duckduckgo.app.browser.session.WebViewSessionStorage
 import com.duckduckgo.app.fire.DuckDuckGoCookieManager
 import com.duckduckgo.app.global.file.FileDeleter
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import javax.inject.Inject
 
@@ -33,7 +34,7 @@ interface WebDataManager {
 }
 
 class WebViewDataManager @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val webViewSessionStorage: WebViewSessionStorage,
     private val cookieManager: DuckDuckGoCookieManager,
     private val fileDeleter: FileDeleter

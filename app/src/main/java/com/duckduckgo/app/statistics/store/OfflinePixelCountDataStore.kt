@@ -19,6 +19,7 @@ package com.duckduckgo.app.statistics.store
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 interface OfflinePixelCountDataStore {
@@ -31,7 +32,7 @@ interface OfflinePixelCountDataStore {
     var cookieDatabaseDeleteErrorCount: Int
 }
 
-class OfflinePixelCountSharedPreferences @Inject constructor(private val context: Context) : OfflinePixelCountDataStore {
+class OfflinePixelCountSharedPreferences @Inject constructor(@ApplicationContext private val context: Context) : OfflinePixelCountDataStore {
 
     override var applicationCrashCount: Int
         get() = preferences.getInt(KEY_APPLICATION_CRASH_COUNT, 0)

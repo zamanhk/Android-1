@@ -26,6 +26,7 @@ import com.duckduckgo.app.browser.LongPressHandler.RequiredAction.*
 import com.duckduckgo.app.browser.model.LongPressTarget
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.*
+import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -43,7 +44,7 @@ interface LongPressHandler {
     }
 }
 
-class WebViewLongPressHandler @Inject constructor(private val context: Context, private val pixel: Pixel) : LongPressHandler {
+class WebViewLongPressHandler @Inject constructor(@ApplicationContext private val context: Context, private val pixel: Pixel) : LongPressHandler {
 
     override fun handleLongPress(longPressTargetType: Int, longPressTargetUrl: String?, menu: ContextMenu) {
         menu.setHeaderTitle(longPressTargetUrl ?: context.getString(R.string.options))

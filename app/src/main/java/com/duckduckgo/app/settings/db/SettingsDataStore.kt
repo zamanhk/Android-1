@@ -24,6 +24,7 @@ import com.duckduckgo.app.global.DuckDuckGoTheme
 import com.duckduckgo.app.icon.api.AppIcon
 import com.duckduckgo.app.settings.clear.ClearWhatOption
 import com.duckduckgo.app.settings.clear.ClearWhenOption
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 interface SettingsDataStore {
@@ -53,7 +54,7 @@ interface SettingsDataStore {
     fun clearAppBackgroundTimestamp()
 }
 
-class SettingsSharedPreferences @Inject constructor(private val context: Context) : SettingsDataStore {
+class SettingsSharedPreferences @Inject constructor(@ApplicationContext private val context: Context) : SettingsDataStore {
 
     override var lastExecutedJobId: String?
         get() = preferences.getString(KEY_BACKGROUND_JOB_ID, null)

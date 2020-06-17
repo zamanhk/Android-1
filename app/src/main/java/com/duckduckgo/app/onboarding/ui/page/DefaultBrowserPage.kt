@@ -18,7 +18,6 @@ package com.duckduckgo.app.onboarding.ui.page
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -38,7 +37,6 @@ import com.duckduckgo.app.browser.defaultbrowsing.DefaultBrowserSystemSettings
 import com.duckduckgo.app.global.ViewModelFactory
 import com.duckduckgo.app.global.view.show
 import com.duckduckgo.app.statistics.VariantManager
-import dagger.android.support.AndroidSupportInjection
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.content_onboarding_default_browser.*
 import timber.log.Timber

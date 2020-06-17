@@ -22,6 +22,7 @@ import com.duckduckgo.app.privacy.model.TermsOfService
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -33,7 +34,7 @@ import javax.inject.Singleton
  * we'll store the content in a db rather than a raw file.
  */
 @Singleton
-class TermsOfServiceRawStore @Inject constructor(private val moshi: Moshi, private val context: Context) : TermsOfServiceStore {
+class TermsOfServiceRawStore @Inject constructor(private val moshi: Moshi, @ApplicationContext private val context: Context) : TermsOfServiceStore {
 
     private var data: List<TermsOfService> = ArrayList()
     private var initialized: Boolean = false

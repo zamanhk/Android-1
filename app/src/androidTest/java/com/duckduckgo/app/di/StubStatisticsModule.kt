@@ -27,11 +27,17 @@ import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.testing.UninstallModules
 import io.reactivex.Completable
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
+@UninstallModules(StatisticsModule::class)
+@InstallIn(ApplicationComponent::class)
 class StubStatisticsModule {
 
     @Provides
@@ -72,7 +78,7 @@ class StubStatisticsModule {
     }
 
     @Provides
-    fun deviceInfo(context: Context): DeviceInfo = ContextDeviceInfo(context)
+    fun deviceInfo(@ApplicationContext context: Context): DeviceInfo = ContextDeviceInfo(context)
 
     @Provides
     @Singleton

@@ -20,6 +20,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.edit
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 interface UnsentForgetAllPixelStore {
@@ -35,7 +36,7 @@ interface UnsentForgetAllPixelStore {
  *
  * When writing values here to SharedPreferences, it is crucial to use `commit = true`. As otherwise the change can be lost in the process restart.
  */
-class UnsentForgetAllPixelStoreSharedPreferences @Inject constructor(private val context: Context) : UnsentForgetAllPixelStore {
+class UnsentForgetAllPixelStoreSharedPreferences @Inject constructor(@ApplicationContext private val context: Context) : UnsentForgetAllPixelStore {
 
     override val pendingPixelCountClearData: Int
         get() = preferences.getInt(KEY_UNSENT_CLEAR_PIXELS, 0)

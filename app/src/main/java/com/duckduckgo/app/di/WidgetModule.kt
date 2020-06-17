@@ -23,6 +23,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -31,5 +32,5 @@ class WidgetModule {
 
     @Provides
     @Singleton
-    fun widgetCapabilities(context: Context): WidgetCapabilities = AppWidgetCapabilities(context)
+    fun widgetCapabilities(@ApplicationContext context: Context): WidgetCapabilities = AppWidgetCapabilities(context)
 }

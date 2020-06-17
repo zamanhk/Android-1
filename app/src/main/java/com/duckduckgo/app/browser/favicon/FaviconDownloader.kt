@@ -22,6 +22,7 @@ import android.net.Uri
 import com.bumptech.glide.Glide
 import com.duckduckgo.app.global.faviconLocation
 import com.duckduckgo.app.global.view.toPx
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -31,7 +32,7 @@ interface FaviconDownloader {
     fun download(currentPageUrl: Uri): Single<Bitmap>
 }
 
-class GlideFaviconDownloader @Inject constructor(private val context: Context) : FaviconDownloader {
+class GlideFaviconDownloader @Inject constructor(@ApplicationContext private val context: Context) : FaviconDownloader {
 
     override fun download(currentPageUrl: Uri): Single<Bitmap> {
 

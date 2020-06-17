@@ -17,9 +17,10 @@
 package com.duckduckgo.app.surrogates.store
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ResourceSurrogateDataStore @Inject constructor(private val context: Context) {
+class ResourceSurrogateDataStore @Inject constructor(@ApplicationContext private val context: Context) {
 
     fun hasData(): Boolean = context.fileExists(FILENAME)
 

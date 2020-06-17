@@ -29,6 +29,7 @@ import com.duckduckgo.app.fire.FireActivity
 import com.duckduckgo.app.fire.UnsentForgetAllPixelStore
 import com.duckduckgo.app.settings.db.SettingsDataStore
 import com.duckduckgo.app.tabs.model.TabRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -46,7 +47,7 @@ interface ClearDataAction {
 }
 
 class ClearPersonalDataAction @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val dataManager: WebDataManager,
     private val clearingStore: UnsentForgetAllPixelStore,
     private val tabRepository: TabRepository,

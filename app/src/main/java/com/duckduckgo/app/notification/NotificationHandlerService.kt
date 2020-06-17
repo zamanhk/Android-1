@@ -22,6 +22,7 @@ import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.VisibleForTesting
+import dagger.hilt.android.qualifiers.ApplicationContext
 import androidx.core.app.NotificationManagerCompat
 import com.duckduckgo.app.browser.BrowserActivity
 import com.duckduckgo.app.icon.ui.ChangeIconActivity
@@ -37,7 +38,6 @@ import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_CANCELLED
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_LAUNCHED
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.WEBSITE
-import dagger.android.AndroidInjection
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -49,6 +49,7 @@ class NotificationHandlerService : IntentService("NotificationHandlerService") {
     lateinit var pixel: Pixel
 
     @Inject
+    @ApplicationContext
     lateinit var context: Context
 
     @Inject

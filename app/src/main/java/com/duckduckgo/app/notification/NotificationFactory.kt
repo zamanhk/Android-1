@@ -23,9 +23,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.duckduckgo.app.notification.model.NotificationSpec
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class NotificationFactory @Inject constructor(val context: Context, val manager: NotificationManagerCompat) {
+class NotificationFactory @Inject constructor(@ApplicationContext val context: Context, val manager: NotificationManagerCompat) {
 
     fun createNotification(
         specification: NotificationSpec,

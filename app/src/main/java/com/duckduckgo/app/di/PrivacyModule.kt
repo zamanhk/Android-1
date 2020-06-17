@@ -36,6 +36,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -54,7 +55,7 @@ class PrivacyModule {
 
     @Provides
     fun clearDataAction(
-        context: Context,
+        @ApplicationContext context: Context,
         dataManager: WebDataManager,
         clearingStore: UnsentForgetAllPixelStore,
         tabRepository: TabRepository,
@@ -83,7 +84,7 @@ class PrivacyModule {
 
     @Provides
     @Singleton
-    fun appCacheCleaner(context: Context, fileDeleter: FileDeleter): AppCacheClearer {
+    fun appCacheCleaner(@ApplicationContext context: Context, fileDeleter: FileDeleter): AppCacheClearer {
         return AndroidAppCacheClearer(context, fileDeleter)
     }
 }

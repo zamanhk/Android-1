@@ -18,9 +18,10 @@ package com.duckduckgo.app.global.store
 
 import android.content.Context
 import com.duckduckgo.app.global.verifySha256
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class BinaryDataStore @Inject constructor(private val context: Context) {
+class BinaryDataStore @Inject constructor(@ApplicationContext private val context: Context) {
 
     fun hasData(name: String): Boolean = context.fileExists(name)
 

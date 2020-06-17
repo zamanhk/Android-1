@@ -24,6 +24,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -38,7 +39,7 @@ class PlayStoreReferralModule {
     @Provides
     @Singleton
     fun appInstallationReferrerStateListener(
-        context: Context,
+        @ApplicationContext context: Context,
         packageManager: PackageManager,
         appInstallationReferrerParser: AppInstallationReferrerParser,
         appReferrerDataStore: AppReferrerDataStore,
@@ -49,7 +50,7 @@ class PlayStoreReferralModule {
 
     @Provides
     @Singleton
-    fun appReferrerDataStore(context: Context): AppReferrerDataStore {
+    fun appReferrerDataStore(@ApplicationContext context: Context): AppReferrerDataStore {
         return AppReferenceSharePreferences(context)
     }
 }
