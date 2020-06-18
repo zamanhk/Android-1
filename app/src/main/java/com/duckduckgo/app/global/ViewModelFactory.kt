@@ -62,8 +62,9 @@ import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.api.StatisticsUpdater
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
-import com.duckduckgo.app.survey.db.SurveyDao
-import com.duckduckgo.app.survey.ui.SurveyViewModel
+import com.duckduckgo.app.survey.legacy.db.SurveyDao
+import com.duckduckgo.app.survey.legacy.ui.SurveyViewModel
+import com.duckduckgo.app.survey.ui.PushSurveyViewModel
 import com.duckduckgo.app.systemsearch.DeviceAppLookup
 import com.duckduckgo.app.systemsearch.SystemSearchViewModel
 import com.duckduckgo.app.tabs.model.TabRepository
@@ -130,6 +131,7 @@ class ViewModelFactory @Inject constructor(
                 isAssignableFrom(FeedbackViewModel::class.java) -> FeedbackViewModel(playStoreUtils, feedbackSubmitter)
                 isAssignableFrom(BrokenSiteViewModel::class.java) -> BrokenSiteViewModel(pixel, brokenSiteSender)
                 isAssignableFrom(SurveyViewModel::class.java) -> SurveyViewModel(surveyDao, statisticsStore, appInstallStore)
+                isAssignableFrom(PushSurveyViewModel::class.java) -> PushSurveyViewModel(statisticsStore, appInstallStore, pixel)
                 isAssignableFrom(AddWidgetInstructionsViewModel::class.java) -> AddWidgetInstructionsViewModel()
                 isAssignableFrom(SettingsViewModel::class.java) -> settingsViewModel()
                 isAssignableFrom(BookmarksViewModel::class.java) -> BookmarksViewModel(bookmarksDao)

@@ -89,8 +89,8 @@ import com.duckduckgo.app.global.view.*
 import com.duckduckgo.app.privacy.renderer.icon
 import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.app.survey.model.Survey
-import com.duckduckgo.app.survey.ui.SurveyActivity
+import com.duckduckgo.app.survey.legacy.model.Survey
+import com.duckduckgo.app.survey.legacy.ui.SurveyActivity
 import com.duckduckgo.app.tabs.model.TabEntity
 import com.duckduckgo.app.tabs.ui.TabSwitcherActivity
 import com.duckduckgo.app.widget.ui.AddWidgetInstructionsActivity

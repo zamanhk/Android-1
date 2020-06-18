@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.model
+package com.duckduckgo.app.survey.legacy.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -28,6 +28,10 @@
     <string name="surveyNotificationTitle">We need your feedback!</string>
     <string name="surveyNotificationDescription">Tap now to take our survey and help us make DuckDuckGo even better.</string>
 
+    <!-- Survey Activity -->
+    <!-- TODO extract other string in activity_push_survey.xml -->
+    <string name="surveySubmissionMessage">Thank you for your feedback!</string>
+
     <!-- Notifications Drip Experiment -->
     <string name="dripA1Title">How anonymous is DuckDuckGo?</string>
     <string name="dripA2Title">Tired of being tracked online? We can help.</string>

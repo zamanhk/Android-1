@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.ui
+package com.duckduckgo.app.survey.legacy.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -29,10 +29,10 @@ import com.duckduckgo.app.global.view.gone
 import com.duckduckgo.app.global.view.show
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.SURVEY_SURVEY_DISMISSED
-import com.duckduckgo.app.survey.model.Survey
-import com.duckduckgo.app.survey.ui.SurveyViewModel.Command
-import com.duckduckgo.app.survey.ui.SurveyViewModel.Command.*
-import kotlinx.android.synthetic.main.activity_user_survey.*
+import com.duckduckgo.app.survey.legacy.model.Survey
+import com.duckduckgo.app.survey.legacy.ui.SurveyViewModel.Command
+import com.duckduckgo.app.survey.legacy.ui.SurveyViewModel.Command.*
+import kotlinx.android.synthetic.main.activity_legacy_webview_survey.*
 import javax.inject.Inject
 
 class SurveyActivity : DuckDuckGoActivity() {
@@ -45,7 +45,7 @@ class SurveyActivity : DuckDuckGoActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_survey)
+        setContentView(R.layout.activity_legacy_webview_survey)
         configureListeners()
 
         webView.settings.javaScriptEnabled = true

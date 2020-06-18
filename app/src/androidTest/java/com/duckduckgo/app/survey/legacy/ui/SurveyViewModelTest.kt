@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.ui
+package com.duckduckgo.app.survey.legacy.ui
 
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -25,11 +25,11 @@ import com.duckduckgo.app.browser.BuildConfig
 import com.duckduckgo.app.global.install.AppInstallStore
 import com.duckduckgo.app.statistics.model.Atb
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
-import com.duckduckgo.app.survey.db.SurveyDao
-import com.duckduckgo.app.survey.model.Survey
-import com.duckduckgo.app.survey.model.Survey.Status.DONE
-import com.duckduckgo.app.survey.model.Survey.Status.SCHEDULED
-import com.duckduckgo.app.survey.ui.SurveyViewModel.Command
+import com.duckduckgo.app.survey.legacy.db.SurveyDao
+import com.duckduckgo.app.survey.legacy.model.Survey
+import com.duckduckgo.app.survey.legacy.model.Survey.Status.DONE
+import com.duckduckgo.app.survey.legacy.model.Survey.Status.SCHEDULED
+import com.duckduckgo.app.survey.legacy.ui.SurveyViewModel.Command
 import com.nhaarman.mockitokotlin2.*
 import org.junit.After
 import org.junit.Assert.assertEquals

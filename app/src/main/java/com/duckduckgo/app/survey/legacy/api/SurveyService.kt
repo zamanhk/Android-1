@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.api
+package com.duckduckgo.app.survey.legacy.api
 
-data class SurveyGroup(val id: String, val surveyOptions: List<SurveyOption>) {
+import retrofit2.Call
+import retrofit2.http.GET
 
-    data class SurveyOption(
-        val url: String,
-        val installationDay: Int?,
-        val ratioOfUsersToShow: Double
-    )
+interface SurveyService {
+
+    @GET("https://staticcdn.duckduckgo.com/survey/survey-mobile.json")
+    fun survey(): Call<SurveyGroup?>
 }

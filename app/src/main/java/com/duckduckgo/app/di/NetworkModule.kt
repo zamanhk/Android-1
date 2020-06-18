@@ -36,7 +36,7 @@ import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import com.duckduckgo.app.surrogates.api.ResourceSurrogateListService
-import com.duckduckgo.app.survey.api.SurveyService
+import com.duckduckgo.app.survey.legacy.api.SurveyService
 import com.duckduckgo.app.trackerdetection.api.TrackerListService
 import com.duckduckgo.app.trackerdetection.db.TdsMetadataDao
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

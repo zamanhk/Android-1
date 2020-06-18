@@ -45,8 +45,8 @@ import com.duckduckgo.app.onboarding.store.*
 import com.duckduckgo.app.privacy.db.*
 import com.duckduckgo.app.privacy.model.PrivacyProtectionCountsEntity
 import com.duckduckgo.app.privacy.model.UserWhitelistedDomain
-import com.duckduckgo.app.survey.db.SurveyDao
-import com.duckduckgo.app.survey.model.Survey
+import com.duckduckgo.app.survey.legacy.db.SurveyDao
+import com.duckduckgo.app.survey.legacy.model.Survey
 import com.duckduckgo.app.tabs.db.TabsDao
 import com.duckduckgo.app.tabs.model.TabEntity
 import com.duckduckgo.app.tabs.model.TabSelectionEntity

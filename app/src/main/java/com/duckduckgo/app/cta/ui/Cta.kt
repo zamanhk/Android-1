@@ -293,7 +293,7 @@ sealed class HomePanelCta(
 
     override fun pixelShownParameters(): Map<String, String> = emptyMap()
 
-    data class Survey(val survey: com.duckduckgo.app.survey.model.Survey) : HomePanelCta(
+    data class Survey(val survey: com.duckduckgo.app.survey.legacy.model.Survey) : HomePanelCta(
         CtaId.SURVEY,
         R.drawable.survey_cta_icon,
         R.string.surveyCtaTitle,

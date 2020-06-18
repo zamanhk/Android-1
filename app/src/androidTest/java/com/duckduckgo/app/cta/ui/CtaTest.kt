@@ -28,7 +28,7 @@ import com.duckduckgo.app.privacy.model.PrivacyGrade
 import com.duckduckgo.app.privacy.model.PrivacyPractices
 import com.duckduckgo.app.privacy.model.TestEntity
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelParameter.CTA_SHOWN
-import com.duckduckgo.app.survey.model.Survey
+import com.duckduckgo.app.survey.legacy.model.Survey
 import com.duckduckgo.app.trackerdetection.model.Entity
 import com.duckduckgo.app.trackerdetection.model.TrackingEvent
 import com.nhaarman.mockitokotlin2.any

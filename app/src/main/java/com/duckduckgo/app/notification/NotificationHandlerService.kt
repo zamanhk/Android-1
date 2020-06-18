@@ -38,6 +38,7 @@ import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_CANCELLED
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.NOTIFICATION_LAUNCHED
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.WEBSITE
+import com.duckduckgo.app.survey.ui.PushSurveyActivity
 import dagger.android.AndroidInjection
 import timber.log.Timber
 import javax.inject.Inject
@@ -119,7 +120,7 @@ class NotificationHandlerService : IntentService("NotificationHandlerService") {
 
     private fun onSurveyLaunched(pixelSuffix: String) {
         Timber.i("Survey Launched!")
-        val intent = SettingsActivity.intent(context)
+        val intent = PushSurveyActivity.intent(context)
         TaskStackBuilder.create(context)
             .addNextIntentWithParentStack(intent)
             .startActivities()

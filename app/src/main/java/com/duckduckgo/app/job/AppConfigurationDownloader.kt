@@ -18,7 +18,7 @@ package com.duckduckgo.app.job
 
 import com.duckduckgo.app.httpsupgrade.api.HttpsUpgradeDataDownloader
 import com.duckduckgo.app.surrogates.api.ResourceSurrogateListDownloader
-import com.duckduckgo.app.survey.api.SurveyDownloader
+import com.duckduckgo.app.survey.legacy.api.SurveyDownloader
 import com.duckduckgo.app.trackerdetection.api.TrackerDataDownloader
 import io.reactivex.Completable
 import timber.log.Timber

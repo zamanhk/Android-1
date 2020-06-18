@@ -42,7 +42,8 @@ import com.duckduckgo.app.onboarding.ui.OnboardingActivity
 import com.duckduckgo.app.onboarding.ui.page.DefaultBrowserPage
 import com.duckduckgo.app.privacy.ui.*
 import com.duckduckgo.app.settings.SettingsActivity
-import com.duckduckgo.app.survey.ui.SurveyActivity
+import com.duckduckgo.app.survey.legacy.ui.SurveyActivity
+import com.duckduckgo.app.survey.ui.PushSurveyActivity
 import com.duckduckgo.app.systemsearch.SystemSearchActivity
 import com.duckduckgo.app.tabs.ui.TabSwitcherActivity
 import com.duckduckgo.app.widget.ui.AddWidgetInstructionsActivity
@@ -105,6 +106,10 @@ abstract class AndroidBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector
     abstract fun userSurveyActivity(): SurveyActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector
+    abstract fun userPushSurveyActivity(): PushSurveyActivity
 
     @ActivityScoped
     @ContributesAndroidInjector

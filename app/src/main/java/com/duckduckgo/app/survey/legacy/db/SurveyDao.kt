@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.db
+package com.duckduckgo.app.survey.legacy.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.duckduckgo.app.survey.model.Survey
+import com.duckduckgo.app.survey.legacy.model.Survey
 
 @Dao
 abstract class SurveyDao {

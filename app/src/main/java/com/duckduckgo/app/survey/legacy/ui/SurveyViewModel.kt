@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.ui
+package com.duckduckgo.app.survey.legacy.ui
 
 import android.os.Build
 import androidx.core.net.toUri
@@ -24,8 +24,8 @@ import com.duckduckgo.app.global.SingleLiveEvent
 import com.duckduckgo.app.global.install.AppInstallStore
 import com.duckduckgo.app.global.install.daysInstalled
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
-import com.duckduckgo.app.survey.db.SurveyDao
-import com.duckduckgo.app.survey.model.Survey
+import com.duckduckgo.app.survey.legacy.db.SurveyDao
+import com.duckduckgo.app.survey.legacy.model.Survey
 import io.reactivex.schedulers.Schedulers
 
 class SurveyViewModel(

@@ -128,6 +128,9 @@ interface Pixel {
         SURVEY_CTA_LAUNCHED(pixelName = "mus_cl"),
         SURVEY_SURVEY_DISMISSED(pixelName = "mus_sd"),
 
+        PUSH_SURVEY_SUBMITTED(pixelName = "m_ps_s"),
+        PUSH_SURVEY_DISMISSED(pixelName = "m_ps_d"),
+
         NOTIFICATION_SHOWN("mnot_s"),
         NOTIFICATION_LAUNCHED("mnot_l"),
         NOTIFICATION_CANCELLED("mnot_c"),

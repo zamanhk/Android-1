@@ -33,6 +33,7 @@ import com.duckduckgo.app.notification.NotificationScheduler.DripA2NotificationW
 import com.duckduckgo.app.notification.NotificationScheduler.DripB1NotificationWorker
 import com.duckduckgo.app.notification.NotificationScheduler.DripB2NotificationWorker
 import com.duckduckgo.app.notification.model.SchedulableNotification
+import com.duckduckgo.app.notification.model.SurveyNotification
 import com.duckduckgo.app.statistics.Variant
 import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.VariantManager.VariantFeature.DripNotification
@@ -63,6 +64,7 @@ class AndroidNotificationSchedulerTest {
     private val variantManager: VariantManager = mock()
     private val clearNotification: SchedulableNotification = mock()
     private val privacyNotification: SchedulableNotification = mock()
+    private val surveyNotification: SurveyNotification = mock()
     private val dripA1Notification: SchedulableNotification = mock()
     private val dripA2Notification: SchedulableNotification = mock()
     private val dripB1Notification: SchedulableNotification = mock()
@@ -80,6 +82,7 @@ class AndroidNotificationSchedulerTest {
             workManager,
             clearNotification,
             privacyNotification,
+            surveyNotification,
             dripA1Notification,
             dripA2Notification,
             dripB1Notification,

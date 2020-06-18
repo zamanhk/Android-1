@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.db
+package com.duckduckgo.app.survey.legacy.db
 
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.duckduckgo.app.global.db.AppDatabase
-import com.duckduckgo.app.survey.model.Survey
-import com.duckduckgo.app.survey.model.Survey.Status.*
+import com.duckduckgo.app.survey.legacy.model.Survey
+import com.duckduckgo.app.survey.legacy.model.Survey.Status.*
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before

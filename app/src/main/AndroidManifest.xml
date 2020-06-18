@@ -263,11 +263,18 @@
             android:label="@string/brokenSiteHeading"
             android:parentActivityName=".BrowserActivity" />
         <activity
-            android:name="com.duckduckgo.app.survey.ui.SurveyActivity"
+            android:name="com.duckduckgo.app.survey.legacy.ui.SurveyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/surveyActivityTitle"
             android:parentActivityName=".BrowserActivity"
             android:theme="@style/ModalCardTheme" />
+        <activity
+            android:name="com.duckduckgo.app.survey.ui.PushSurveyActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/surveyActivityTitle"
+            android:parentActivityName=".BrowserActivity"
+            android:theme="@style/ModalCardTheme">
+        </activity>
         <activity
             android:name="com.duckduckgo.app.widget.ui.AddWidgetInstructionsActivity"
             android:label="@string/addWidgetInstructionsActivityTitle"

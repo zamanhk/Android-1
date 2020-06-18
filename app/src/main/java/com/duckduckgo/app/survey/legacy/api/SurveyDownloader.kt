@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.app.survey.api
+package com.duckduckgo.app.survey.legacy.api
 
-import com.duckduckgo.app.survey.api.SurveyGroup.SurveyOption
-import com.duckduckgo.app.survey.db.SurveyDao
-import com.duckduckgo.app.survey.model.Survey
-import com.duckduckgo.app.survey.model.Survey.Status.NOT_ALLOCATED
-import com.duckduckgo.app.survey.model.Survey.Status.SCHEDULED
+import com.duckduckgo.app.survey.legacy.api.SurveyGroup.SurveyOption
+import com.duckduckgo.app.survey.legacy.db.SurveyDao
+import com.duckduckgo.app.survey.legacy.model.Survey
+import com.duckduckgo.app.survey.legacy.model.Survey.Status.NOT_ALLOCATED
+import com.duckduckgo.app.survey.legacy.model.Survey.Status.SCHEDULED
 import io.reactivex.Completable
 import timber.log.Timber
 import java.io.IOException

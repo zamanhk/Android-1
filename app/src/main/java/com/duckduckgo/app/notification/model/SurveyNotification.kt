@@ -35,7 +35,7 @@ class SurveyNotification(
     override val cancelIntent = CANCEL
 
     override suspend fun canShow(): Boolean {
-        //TODO add condition that determines how many times it should have been used
+        //TODO add condition that determines usage requirements prior to showing survey
         if (notificationDao.exists(id)) {
             Timber.v("Notification already scheduled")
             return false
