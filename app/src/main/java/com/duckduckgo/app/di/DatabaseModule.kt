@@ -32,14 +32,6 @@ import javax.inject.Singleton
 class DatabaseModule {
 
     @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext context: Context, migrationsProvider: MigrationsProvider): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, "app.db")
-            .addMigrations(*migrationsProvider.ALL_MIGRATIONS.toTypedArray())
-            .build()
-    }
-
-    @Provides
     fun provideDatabaseMigrations(@ApplicationContext context: Context): MigrationsProvider {
         return MigrationsProvider(context)
     }

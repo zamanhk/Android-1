@@ -28,6 +28,7 @@ android {
 //                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
 //            }
 //        }
+
         sourceSets {
             androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
             androidTest.resources.srcDirs += files("$projectDir/../submodules/".toString())
@@ -115,7 +116,7 @@ ext {
     webkit = "1.2.0"
     referrerLibrary = "1.1.2"
 
-    junit = "4.12"
+    junit = "4.13"
     dagger = "2.27"
     retrofit = "2.8.1"
     ankoVersion = "0.10.4"

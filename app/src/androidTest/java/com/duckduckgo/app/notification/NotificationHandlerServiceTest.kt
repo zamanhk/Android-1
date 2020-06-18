@@ -19,6 +19,7 @@ package com.duckduckgo.app.notification
 import android.content.Intent
 import androidx.core.app.NotificationManagerCompat
 import androidx.test.platform.app.InstrumentationRegistry
+import com.duckduckgo.app.di.AppComponentModule
 import com.duckduckgo.app.notification.NotificationHandlerService.Companion.PIXEL_SUFFIX_EXTRA
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.CANCEL
 import com.duckduckgo.app.notification.NotificationHandlerService.NotificationEvent.CLEAR_DATA_LAUNCH
@@ -27,10 +28,19 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
+@HiltAndroidTest
+@UninstallModules(AppComponentModule::class)
 class NotificationHandlerServiceTest {
+
+    @get:Rule
+    var rule = HiltAndroidRule(this)
 
     private var mockPixel: Pixel = mock()
     private var testee = NotificationHandlerService()
