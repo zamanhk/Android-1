@@ -28,6 +28,7 @@ import com.duckduckgo.app.feedback.api.SubReasonApiMapper
 import com.duckduckgo.app.global.AppUrl.Url
 import com.duckduckgo.app.global.api.ApiRequestInterceptor
 import com.duckduckgo.app.global.api.NetworkApiCache
+import com.duckduckgo.app.global.install.AppInstallStore
 import com.duckduckgo.app.global.job.AppConfigurationSyncWorkRequestBuilder
 import com.duckduckgo.app.httpsupgrade.api.HttpsUpgradeService
 import com.duckduckgo.app.job.AppConfigurationSyncer
@@ -36,7 +37,10 @@ import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import com.duckduckgo.app.surrogates.api.ResourceSurrogateListService
+import com.duckduckgo.app.survey.db.PushSurveyDao
 import com.duckduckgo.app.survey.legacy.api.SurveyService
+import com.duckduckgo.app.survey.worker.PushSurveyRepeatSubmitter
+import com.duckduckgo.app.survey.worker.PushSurveySubmitter
 import com.duckduckgo.app.trackerdetection.api.TrackerListService
 import com.duckduckgo.app.trackerdetection.db.TdsMetadataDao
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -130,12 +134,22 @@ class NetworkModule {
         variantManager: VariantManager,
         tdsMetadataDao: TdsMetadataDao,
         pixel: Pixel
-    ): BrokenSiteSender =
-        BrokenSiteSubmitter(statisticsStore, variantManager, tdsMetadataDao, pixel)
+    ): BrokenSiteSender = BrokenSiteSubmitter(statisticsStore, variantManager, tdsMetadataDao, pixel)
 
     @Provides
-    fun surveyService(@Named("api") retrofit: Retrofit): SurveyService =
-        retrofit.create(SurveyService::class.java)
+    fun pushSurveySubmitter(
+        appInstallStore: AppInstallStore,
+        pixel: Pixel
+    ): PushSurveySubmitter = PushSurveySubmitter(appInstallStore, pixel)
+
+    @Provides
+    fun pushSurveyRepeatSender(
+        dao: PushSurveyDao,
+        pushSurveySubmitter: PushSurveySubmitter
+    ): PushSurveyRepeatSubmitter = PushSurveyRepeatSubmitter(dao, pushSurveySubmitter)
+
+    @Provides
+    fun surveyService(@Named("api") retrofit: Retrofit): SurveyService = retrofit.create(SurveyService::class.java)
 
     @Provides
     fun feedbackSubmitter(
@@ -144,8 +158,7 @@ class NetworkModule {
         apiKeyMapper: SubReasonApiMapper,
         statisticsStore: StatisticsDataStore,
         pixel: Pixel
-    ): FeedbackSubmitter =
-        FireAndForgetFeedbackSubmitter(feedbackService, variantManager, apiKeyMapper, statisticsStore, pixel)
+    ): FeedbackSubmitter = FireAndForgetFeedbackSubmitter(feedbackService, variantManager, apiKeyMapper, statisticsStore, pixel)
 
     @Provides
     fun feedbackService(@Named("api") retrofit: Retrofit): FeedbackService =

@@ -45,6 +45,8 @@ import com.duckduckgo.app.onboarding.store.*
 import com.duckduckgo.app.privacy.db.*
 import com.duckduckgo.app.privacy.model.PrivacyProtectionCountsEntity
 import com.duckduckgo.app.privacy.model.UserWhitelistedDomain
+import com.duckduckgo.app.survey.db.PushSurvey
+import com.duckduckgo.app.survey.db.PushSurveyDao
 import com.duckduckgo.app.survey.legacy.db.SurveyDao
 import com.duckduckgo.app.survey.legacy.model.Survey
 import com.duckduckgo.app.tabs.db.TabsDao
@@ -58,7 +60,7 @@ import com.duckduckgo.app.usage.search.SearchCountDao
 import com.duckduckgo.app.usage.search.SearchCountEntity
 
 @Database(
-    exportSchema = true, version = 21, entities = [
+    exportSchema = true, version = 22, entities = [
         TdsTracker::class,
         TdsEntity::class,
         TdsDomainEntity::class,
@@ -72,6 +74,7 @@ import com.duckduckgo.app.usage.search.SearchCountEntity
         TabSelectionEntity::class,
         BookmarkEntity::class,
         Survey::class,
+        PushSurvey::class,
         DismissedCta::class,
         SearchCountEntity::class,
         AppDaysUsedEntity::class,
@@ -109,6 +112,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun tabsDao(): TabsDao
     abstract fun bookmarksDao(): BookmarksDao
     abstract fun surveyDao(): SurveyDao
+    abstract fun pushSurveyDao(): PushSurveyDao
     abstract fun dismissedCtaDao(): DismissedCtaDao
     abstract fun searchCountDao(): SearchCountDao
     abstract fun appsDaysUsedDao(): AppDaysUsedDao
@@ -292,6 +296,12 @@ class MigrationsProvider(val context: Context) {
         }
     }
 
+    val MIGRATION_21_TO_22: Migration = object : Migration(21, 22) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS `push_survey` (`surveyId` INTEGER NOT NULL PRIMARY KEY, `q1` TEXT NOT NULL, `q2` TEXT NOT NULL, `sentCount` INTEGER NOT NULL, `lastSent` INTEGER NOT NULL)")
+        }
+    }
+
     val ALL_MIGRATIONS: List<Migration>
         get() = listOf(
             MIGRATION_1_TO_2,
@@ -313,7 +323,8 @@ class MigrationsProvider(val context: Context) {
             MIGRATION_17_TO_18,
             MIGRATION_18_TO_19,
             MIGRATION_19_TO_20,
-            MIGRATION_20_TO_21
+            MIGRATION_20_TO_21,
+            MIGRATION_21_TO_22
         )
 
     @Deprecated(

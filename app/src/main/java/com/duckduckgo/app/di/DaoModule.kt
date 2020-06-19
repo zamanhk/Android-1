@@ -57,6 +57,9 @@ class DaoModule {
     fun surveyDao(database: AppDatabase) = database.surveyDao()
 
     @Provides
+    fun pushSurveyDao(database: AppDatabase) = database.pushSurveyDao()
+
+    @Provides
     fun dismissedCtaDao(database: AppDatabase) = database.dismissedCtaDao()
 
     @Provides

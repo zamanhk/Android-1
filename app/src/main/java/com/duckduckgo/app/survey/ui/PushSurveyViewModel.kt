@@ -16,18 +16,20 @@
 
 package com.duckduckgo.app.survey.ui
 
-import android.os.Build
 import androidx.lifecycle.ViewModel
 import com.duckduckgo.app.global.SingleLiveEvent
-import com.duckduckgo.app.global.install.AppInstallStore
-import com.duckduckgo.app.global.install.daysInstalled
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.app.statistics.store.StatisticsDataStore
+import com.duckduckgo.app.survey.db.PushSurvey
+import com.duckduckgo.app.survey.db.PushSurveyDao
+import com.duckduckgo.app.survey.worker.PushSurveySubmitter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class PushSurveyViewModel(
-    private val statisticsStore: StatisticsDataStore,
-    private val appInstallStore: AppInstallStore,
-    private val pixel: Pixel
+    private val pixel: Pixel,
+    private val dao: PushSurveyDao,
+    private val pushSurveySubmitter: PushSurveySubmitter
 ) : ViewModel() {
 
     sealed class Command {
@@ -57,15 +59,11 @@ class PushSurveyViewModel(
     }
 
     fun onSubmitPressed() {
-        val params = mapOf(
-            Params.Q1 to (q1Answer ?: ""),
-            Params.Q2 to (q2Answer ?: ""),
-            Params.DAYS_INSTALLED to "${appInstallStore.daysInstalled()}",
-            Params.ANDROID_VERSION to "${Build.VERSION.SDK_INT}",
-            Params.MANUFACTURER to Build.MANUFACTURER,
-            Params.MODEL to Build.MODEL
-        )
-        pixel.fire(Pixel.PixelName.PUSH_SURVEY_SUBMITTED, parameters = params)
+        val pushSurvey = PushSurvey(q1 = q1Answer ?: "", q2 = q2Answer ?: "", sentCount = 0, lastSent = System.currentTimeMillis())
+        GlobalScope.launch(Dispatchers.IO) {
+            dao.insert(pushSurvey)
+        }
+        pushSurveySubmitter.send(pushSurvey)
         command.value = Command.ShowSuccessMessage
         command.value = Command.Close
     }
@@ -73,14 +71,5 @@ class PushSurveyViewModel(
     fun onSurveyDismissed() {
         pixel.fire(Pixel.PixelName.PUSH_SURVEY_DISMISSED)
         command.value = Command.Close
-    }
-
-    private object Params {
-        const val Q1 = "q1"
-        const val Q2 = "q2"
-        const val DAYS_INSTALLED = "delta"
-        const val ANDROID_VERSION = "av"
-        const val MANUFACTURER = "man"
-        const val MODEL = "mo"
     }
 }

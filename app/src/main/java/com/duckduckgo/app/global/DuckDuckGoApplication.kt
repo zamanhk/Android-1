@@ -51,6 +51,7 @@ import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.APP_LAUNCH
 import com.duckduckgo.app.statistics.store.OfflinePixelCountDataStore
 import com.duckduckgo.app.statistics.store.StatisticsDataStore
 import com.duckduckgo.app.surrogates.ResourceSurrogateLoader
+import com.duckduckgo.app.survey.worker.PushSurveyRepeatSubmitter
 import com.duckduckgo.app.trackerdetection.TrackerDataLoader
 import com.duckduckgo.app.usage.app.AppDaysUsedRecorder
 import dagger.android.AndroidInjector
@@ -129,6 +130,9 @@ open class DuckDuckGoApplication : HasAndroidInjector, Application(), LifecycleO
     lateinit var appEnjoymentLifecycleObserver: AppEnjoymentLifecycleObserver
 
     @Inject
+    lateinit var pushSurveyRepeatSubmitter: PushSurveyRepeatSubmitter
+
+    @Inject
     lateinit var appDaysUsedRecorder: AppDaysUsedRecorder
 
     @Inject
@@ -170,6 +174,7 @@ open class DuckDuckGoApplication : HasAndroidInjector, Application(), LifecycleO
             it.addObserver(appDaysUsedRecorder)
             it.addObserver(defaultBrowserObserver)
             it.addObserver(appEnjoymentLifecycleObserver)
+            it.addObserver(pushSurveyRepeatSubmitter)
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
