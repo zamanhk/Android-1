@@ -29,7 +29,7 @@ platform :android do
     UI.message ("Upload new app version to GitHub\nVersion: #{version}\nRelease Notes:\n=====\n#{releaseNotes}\n=====\n")
 
     set_github_release(
-        repository_name: "DuckDuckGo/Android",
+        repository_name: "CDRussell/Android",
         api_token: token,
         name: version,
         tag_name: version,
