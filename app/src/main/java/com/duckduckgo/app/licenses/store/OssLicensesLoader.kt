@@ -25,7 +25,6 @@ import com.duckduckgo.app.trackerdetection.api.TdsJson
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
 
-@WorkerThread
 class OssLicensesLoader @Inject constructor(
     private val context: Context,
     private val moshi: Moshi

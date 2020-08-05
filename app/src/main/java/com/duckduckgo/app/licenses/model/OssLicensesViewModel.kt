@@ -64,7 +64,7 @@ class OssLicensesViewModel @Inject constructor(
     }
 
     fun loadLicenses() {
-        viewModelScope.launch() {
+        viewModelScope.launch(dispatchers.main()) {
             val licenses = ossLicensesLoader.loadLicenses()
             viewState.value = currentViewState().copy(licenses = licenses)
         }
