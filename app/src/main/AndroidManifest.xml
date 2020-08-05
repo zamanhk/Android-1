@@ -291,9 +291,15 @@
             android:name="com.duckduckgo.app.icon.ui.ChangeIconActivity"
             android:label="@string/changeIconActivityTitle"
             android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
+
         <activity
             android:name="com.duckduckgo.app.privacy.ui.WhitelistActivity"
             android:label="@string/whitelisetActivityTitle"
+            android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
+
+        <activity
+            android:name="com.duckduckgo.app.licenses.ui.OpenSourceLicensesActivity"
+            android:label="@string/ossLicensesActivityTitle"
             android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
 
         <service

@@ -1,0 +1,14 @@
+{
+  "licenses": [
+    {
+      "name": "Android Support Libraries",
+      "license": "Apache 2.0",
+      "link": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    },
+    {
+      "name": "Android App Compat",
+      "license": "Apache 2.0",
+      "link": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    }
+  ]
+}

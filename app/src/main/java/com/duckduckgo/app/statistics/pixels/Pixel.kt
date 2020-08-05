@@ -208,6 +208,8 @@ interface Pixel {
         USE_OUR_APP_SHORTCUT_OPENED("m_sho_uoa_o"),
         SHORTCUT_ADDED("m_sho_a"),
         SHORTCUT_OPENED("m_sho_o"),
+
+        OPEN_SOURCE_LICENSES_OPENED("m_oss"),
     }
 
     object PixelParameter {
