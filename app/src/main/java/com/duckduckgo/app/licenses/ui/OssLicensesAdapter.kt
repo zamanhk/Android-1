@@ -19,16 +19,14 @@ package com.duckduckgo.app.licenses.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.licenses.model.OssLicense
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_license
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_name
-import kotlinx.android.synthetic.main.item_tracker_network_header.view.*
 
-class OpenSourceLicensesAdapter(private val onClick: (OssLicense) -> Unit) : RecyclerView.Adapter<OpenSourceLicensesAdapter.LicenseViewHolder>() {
+class OssLicensesAdapter(private val onClick: (OssLicense) -> Unit) : RecyclerView.Adapter<OssLicensesAdapter.LicenseViewHolder>() {
 
     private var licensesViewData: MutableList<OssLicense> = mutableListOf()
 

@@ -36,7 +36,7 @@ import com.duckduckgo.app.global.sendThemeChangedBroadcast
 import com.duckduckgo.app.global.view.launchDefaultAppActivity
 import com.duckduckgo.app.global.view.quietlySetIsChecked
 import com.duckduckgo.app.icon.ui.ChangeIconActivity
-import com.duckduckgo.app.licenses.ui.OpenSourceLicensesActivity
+import com.duckduckgo.app.licenses.ui.OssLicensesActivity
 import com.duckduckgo.app.privacy.ui.WhitelistActivity
 import com.duckduckgo.app.settings.SettingsViewModel.AutomaticallyClearData
 import com.duckduckgo.app.settings.SettingsViewModel.Command
@@ -84,7 +84,7 @@ class SettingsActivity : DuckDuckGoActivity(), SettingsAutomaticallyClearWhatFra
     private fun configureUiEventHandlers() {
         changeAppIconLabel.setOnClickListener { viewModel.userRequestedToChangeIcon() }
         about.setOnClickListener { startActivity(AboutDuckDuckGoActivity.intent(this)) }
-        licenses.setOnClickListener { startActivity(OpenSourceLicensesActivity.intent(this)) }
+        licenses.setOnClickListener { startActivity(OssLicensesActivity.intent(this)) }
         provideFeedback.setOnClickListener { viewModel.userRequestedToSendFeedback() }
         fireproofWebsites.setOnClickListener { viewModel.onFireproofWebsitesClicked() }
 

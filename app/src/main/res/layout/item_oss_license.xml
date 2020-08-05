@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="doubleclick.net" />
+        tools:text="An amazing library" />
 
     <TextView
         android:id="@+id/oss_license"
@@ -56,6 +56,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/oss_name"
-        tools:text="Advertising" />
+        tools:text="The amazing Apache License" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

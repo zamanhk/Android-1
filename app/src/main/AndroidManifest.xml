@@ -298,7 +298,7 @@
             android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
 
         <activity
-            android:name="com.duckduckgo.app.licenses.ui.OpenSourceLicensesActivity"
+            android:name="com.duckduckgo.app.licenses.ui.OssLicensesActivity"
             android:label="@string/ossLicensesActivityTitle"
             android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
 

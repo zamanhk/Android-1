@@ -21,17 +21,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.duckduckgo.app.browser.BrowserActivity
 import com.duckduckgo.app.browser.R
+import com.duckduckgo.app.global.AppUrl
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.duckduckgo.app.licenses.model.OssLicense
 import com.duckduckgo.app.licenses.model.OssLicensesViewModel
 import kotlinx.android.synthetic.main.content_oss_licenses.licensesList
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-class OpenSourceLicensesActivity : DuckDuckGoActivity() {
+class OssLicensesActivity : DuckDuckGoActivity() {
 
     private val viewModel: OssLicensesViewModel by bindViewModel()
-    private val licensesAdapter: OpenSourceLicensesAdapter = OpenSourceLicensesAdapter { license ->
+    private val licensesAdapter: OssLicensesAdapter = OssLicensesAdapter { license ->
         viewModel.userRequestedToOpenLink(license)
     }
 
@@ -70,12 +72,13 @@ class OpenSourceLicensesActivity : DuckDuckGoActivity() {
     }
 
     private fun openLink(license: OssLicense) {
-
+        startActivity(BrowserActivity.intent(this, license.link))
+        finish()
     }
 
     companion object {
         fun intent(context: Context): Intent {
-            return Intent(context, OpenSourceLicensesActivity::class.java)
+            return Intent(context, OssLicensesActivity::class.java)
         }
     }
 
