@@ -19,29 +19,17 @@ package com.duckduckgo.app.licenses.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.duckduckgo.app.browser.BuildConfig
-import com.duckduckgo.app.browser.defaultbrowsing.DefaultBrowserDetector
 import com.duckduckgo.app.global.DefaultDispatcherProvider
 import com.duckduckgo.app.global.DispatcherProvider
-import com.duckduckgo.app.global.DuckDuckGoTheme
 import com.duckduckgo.app.global.SingleLiveEvent
-import com.duckduckgo.app.icon.api.AppIcon
-import com.duckduckgo.app.licenses.store.LicensesLoader
 import com.duckduckgo.app.licenses.store.OssLicensesLoader
-import com.duckduckgo.app.settings.clear.ClearWhatOption
-import com.duckduckgo.app.settings.clear.ClearWhenOption
-import com.duckduckgo.app.settings.db.SettingsDataStore
-import com.duckduckgo.app.statistics.VariantManager
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.app.statistics.pixels.Pixel.PixelName
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 import javax.inject.Inject
 
 class OssLicensesViewModel @Inject constructor(
-    private val ossLicensesLoader: LicensesLoader,
+    private val licensesLoader: OssLicensesLoader,
     private val pixel: Pixel,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
@@ -66,7 +54,7 @@ class OssLicensesViewModel @Inject constructor(
 
     fun loadLicenses() {
         viewModelScope.launch(dispatchers.main()) {
-            val licenses = ossLicensesLoader.loadLicenses()
+            val licenses = licensesLoader.loadLicenses()
             viewState.value = currentViewState().copy(licenses = licenses)
         }
     }

@@ -51,6 +51,7 @@ import com.duckduckgo.app.icon.api.IconModifier
 import com.duckduckgo.app.icon.ui.ChangeIconViewModel
 import com.duckduckgo.app.launch.LaunchViewModel
 import com.duckduckgo.app.licenses.model.OssLicensesViewModel
+import com.duckduckgo.app.licenses.store.JsonOssLicensesLoader
 import com.duckduckgo.app.licenses.store.OssLicensesLoader
 import com.duckduckgo.app.notification.db.NotificationDao
 import com.duckduckgo.app.onboarding.store.UserStageStore
@@ -119,7 +120,7 @@ class ViewModelFactory @Inject constructor(
     private val userEventsStore: UserEventsStore,
     private val notificationDao: NotificationDao,
     private val userOurAppDetector: UseOurAppDetector,
-    private val ossLicensesLoader: OssLicensesLoader,
+    private val jsonLicensesLoader: JsonOssLicensesLoader,
     private val dismissedCtaDao: DismissedCtaDao,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModelProvider.NewInstanceFactory() {
@@ -230,7 +231,7 @@ class ViewModelFactory @Inject constructor(
 
     private fun ossLicensesViewModel() =
         OssLicensesViewModel(
-            ossLicensesLoader = ossLicensesLoader,
+            licensesLoader = jsonLicensesLoader,
             pixel = pixel,
             dispatchers = dispatcherProvider
         )

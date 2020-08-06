@@ -20,9 +20,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.duckduckgo.app.CoroutineTestRule
 import com.duckduckgo.app.InstantSchedulersRule
-import com.duckduckgo.app.fire.fireproofwebsite.data.FireproofWebsiteEntity
-import com.duckduckgo.app.fire.fireproofwebsite.ui.FireproofWebsitesViewModel
-import com.duckduckgo.app.licenses.store.LicensesLoader
 import com.duckduckgo.app.licenses.store.OssLicensesLoader
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.nhaarman.mockitokotlin2.atLeastOnce
@@ -52,11 +49,11 @@ class OssLicensesViewModelTest {
     private var mockViewStateObserver: Observer<OssLicensesViewModel.ViewState> = mock()
     private val viewStateCaptor = ArgumentCaptor.forClass(OssLicensesViewModel.ViewState::class.java)
 
-    private var licensesLoader: LicensesLoader = mock()
+    private var ossLicensesLoader: OssLicensesLoader = mock()
     private var mockPixel: Pixel = mock()
 
     private val testee: OssLicensesViewModel by lazy {
-        val model = OssLicensesViewModel(licensesLoader, mockPixel, coroutineRule.testDispatcherProvider)
+        val model = OssLicensesViewModel(ossLicensesLoader, mockPixel, coroutineRule.testDispatcherProvider)
         model.viewState.observeForever(mockViewStateObserver)
         model.command.observeForever(mockCommandObserver)
         model
@@ -66,7 +63,7 @@ class OssLicensesViewModelTest {
     fun whenLicensesAreLoadedThenViewStateIsUpdated() {
         val defaultViewState = OssLicensesViewModel.ViewState(someLicenses())
 
-        whenever(licensesLoader.loadLicenses()).thenReturn(someLicenses())
+        whenever(ossLicensesLoader.loadLicenses()).thenReturn(someLicenses())
 
         testee.loadLicenses()
 

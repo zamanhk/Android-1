@@ -17,22 +17,20 @@
 package com.duckduckgo.app.licenses.store
 
 import android.content.Context
-import androidx.annotation.WorkerThread
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.licenses.model.LicensesJson
 import com.duckduckgo.app.licenses.model.OssLicense
-import com.duckduckgo.app.trackerdetection.api.TdsJson
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
 
-interface LicensesLoader{
+interface OssLicensesLoader{
     fun loadLicenses(): List<OssLicense>
 }
 
-class OssLicensesLoader @Inject constructor(
+class JsonOssLicensesLoader @Inject constructor(
     private val context: Context,
     private val moshi: Moshi
-): LicensesLoader {
+): OssLicensesLoader {
 
     override fun loadLicenses(): List<OssLicense> {
         val json = context.resources.openRawResource(R.raw.oss_licenses).bufferedReader().use { it.readText() }
