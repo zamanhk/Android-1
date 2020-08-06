@@ -22,20 +22,20 @@ import androidx.lifecycle.viewModelScope
 import com.duckduckgo.app.global.DefaultDispatcherProvider
 import com.duckduckgo.app.global.DispatcherProvider
 import com.duckduckgo.app.global.SingleLiveEvent
-import com.duckduckgo.app.licenses.store.OssLicensesLoader
+import com.duckduckgo.app.licenses.store.OssLibrariesLoader
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.statistics.pixels.Pixel.PixelName.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class OssLicensesViewModel @Inject constructor(
-    private val licensesLoader: OssLicensesLoader,
+class OssLibrariesViewModel @Inject constructor(
+    private val librariesLoader: OssLibrariesLoader,
     private val pixel: Pixel,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
 
     data class ViewState(
-        val licenses: List<OssLicense> = emptyList()
+        val licens: List<OssLibrary> = emptyList()
     )
 
     sealed class Command {
@@ -52,19 +52,19 @@ class OssLicensesViewModel @Inject constructor(
         pixel.fire(OPEN_SOURCE_LICENSES_OPENED)
     }
 
-    fun loadLicenses() {
+    fun loadLibraries() {
         viewModelScope.launch(dispatchers.main()) {
-            val licenses = licensesLoader.loadLicenses()
-            viewState.value = currentViewState().copy(licenses = licenses)
+            val licenses = librariesLoader.loadLibraries()
+            viewState.value = currentViewState().copy(licens = licenses)
         }
     }
 
-    fun userRequestedToOpenLink(license: OssLicense) {
-        command.value = Command.OpenLink(license.link)
+    fun userRequestedToOpenLink(library: OssLibrary) {
+        command.value = Command.OpenLink(library.link)
     }
 
-    fun userRequestedToOpenLicense(license: OssLicense) {
-        command.value = Command.OpenLink(license.licenseLink)
+    fun userRequestedToOpenLicense(library: OssLibrary) {
+        command.value = Command.OpenLink(library.licenseLink)
     }
 
     private fun currentViewState(): ViewState {

@@ -50,8 +50,8 @@ import com.duckduckgo.app.global.useourapp.UseOurAppDetector
 import com.duckduckgo.app.icon.api.IconModifier
 import com.duckduckgo.app.icon.ui.ChangeIconViewModel
 import com.duckduckgo.app.launch.LaunchViewModel
-import com.duckduckgo.app.licenses.model.OssLicensesViewModel
-import com.duckduckgo.app.licenses.store.JsonOssLicensesLoader
+import com.duckduckgo.app.licenses.model.OssLibrariesViewModel
+import com.duckduckgo.app.licenses.store.JsonOssLibrariesLoader
 import com.duckduckgo.app.notification.db.NotificationDao
 import com.duckduckgo.app.onboarding.store.UserStageStore
 import com.duckduckgo.app.onboarding.ui.OnboardingPageManager
@@ -119,7 +119,7 @@ class ViewModelFactory @Inject constructor(
     private val userEventsStore: UserEventsStore,
     private val notificationDao: NotificationDao,
     private val userOurAppDetector: UseOurAppDetector,
-    private val jsonLicensesLoader: JsonOssLicensesLoader,
+    private val jsonLicensesLoader: JsonOssLibrariesLoader,
     private val dismissedCtaDao: DismissedCtaDao,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModelProvider.NewInstanceFactory() {
@@ -151,7 +151,7 @@ class ViewModelFactory @Inject constructor(
                 isAssignableFrom(DefaultBrowserPageViewModel::class.java) -> defaultBrowserPage()
                 isAssignableFrom(ChangeIconViewModel::class.java) -> changeAppIconViewModel()
                 isAssignableFrom(FireproofWebsitesViewModel::class.java) -> fireproofWebsiteViewModel()
-                isAssignableFrom(OssLicensesViewModel::class.java) -> ossLicensesViewModel()
+                isAssignableFrom(OssLibrariesViewModel::class.java) -> ossLicensesViewModel()
 
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
@@ -229,8 +229,8 @@ class ViewModelFactory @Inject constructor(
         )
 
     private fun ossLicensesViewModel() =
-        OssLicensesViewModel(
-            licensesLoader = jsonLicensesLoader,
+        OssLibrariesViewModel(
+            librariesLoader = jsonLicensesLoader,
             pixel = pixel,
             dispatchers = dispatcherProvider
         )

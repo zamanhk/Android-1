@@ -20,7 +20,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.duckduckgo.app.CoroutineTestRule
 import com.duckduckgo.app.InstantSchedulersRule
-import com.duckduckgo.app.licenses.store.OssLicensesLoader
+import com.duckduckgo.app.licenses.store.OssLibrariesLoader
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
@@ -32,7 +32,7 @@ import org.junit.Test
 import org.mockito.ArgumentCaptor
 import org.mockito.Mockito
 
-class OssLicensesViewModelTest {
+class OssLibrariesViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -44,16 +44,16 @@ class OssLicensesViewModelTest {
     @get:Rule
     var coroutineRule = CoroutineTestRule()
 
-    private val commandCaptor = ArgumentCaptor.forClass(OssLicensesViewModel.Command::class.java)
-    private var mockCommandObserver: Observer<OssLicensesViewModel.Command> = mock()
-    private var mockViewStateObserver: Observer<OssLicensesViewModel.ViewState> = mock()
-    private val viewStateCaptor = ArgumentCaptor.forClass(OssLicensesViewModel.ViewState::class.java)
+    private val commandCaptor = ArgumentCaptor.forClass(OssLibrariesViewModel.Command::class.java)
+    private var mockCommandObserver: Observer<OssLibrariesViewModel.Command> = mock()
+    private var mockViewStateObserver: Observer<OssLibrariesViewModel.ViewState> = mock()
+    private val viewStateCaptor = ArgumentCaptor.forClass(OssLibrariesViewModel.ViewState::class.java)
 
-    private var ossLicensesLoader: OssLicensesLoader = mock()
+    private var ossLibrariesLoader: OssLibrariesLoader = mock()
     private var mockPixel: Pixel = mock()
 
-    private val testee: OssLicensesViewModel by lazy {
-        val model = OssLicensesViewModel(ossLicensesLoader, mockPixel, coroutineRule.testDispatcherProvider)
+    private val testee: OssLibrariesViewModel by lazy {
+        val model = OssLibrariesViewModel(ossLibrariesLoader, mockPixel, coroutineRule.testDispatcherProvider)
         model.viewState.observeForever(mockViewStateObserver)
         model.command.observeForever(mockCommandObserver)
         model
@@ -61,11 +61,11 @@ class OssLicensesViewModelTest {
 
     @Test
     fun whenLicensesAreLoadedThenViewStateIsUpdated() {
-        val defaultViewState = OssLicensesViewModel.ViewState(someLicenses())
+        val defaultViewState = OssLibrariesViewModel.ViewState(someLicenses())
 
-        whenever(ossLicensesLoader.loadLicenses()).thenReturn(someLicenses())
+        whenever(ossLibrariesLoader.loadLibraries()).thenReturn(someLicenses())
 
-        testee.loadLicenses()
+        testee.loadLibraries()
 
         Mockito.verify(mockViewStateObserver, atLeastOnce()).onChanged(viewStateCaptor.capture())
         assertEquals(defaultViewState, viewStateCaptor.value)
@@ -76,7 +76,7 @@ class OssLicensesViewModelTest {
         val license = aLicense()
         testee.userRequestedToOpenLink(license)
 
-        assertCommandIssued<OssLicensesViewModel.Command.OpenLink> {
+        assertCommandIssued<OssLibrariesViewModel.Command.OpenLink> {
             assertEquals(license.link, this.url)
         }
     }
@@ -86,24 +86,24 @@ class OssLicensesViewModelTest {
         val license = aLicense()
         testee.userRequestedToOpenLicense(license)
 
-        assertCommandIssued<OssLicensesViewModel.Command.OpenLink> {
+        assertCommandIssued<OssLibrariesViewModel.Command.OpenLink> {
             assertEquals(license.licenseLink, this.url)
         }
     }
 
-    private fun someLicenses(): List<OssLicense> {
+    private fun someLicenses(): List<OssLibrary> {
         return listOf(
-            OssLicense("one name", "one license", "one link", "licenseLink"),
-            OssLicense
+            OssLibrary("one name", "one license", "one link", "licenseLink"),
+            OssLibrary
                 ("second name", "second license", "second link", "licenseLink")
         )
     }
 
-    private fun aLicense(): OssLicense {
-        return OssLicense("library", "license", "link", "licenseLink")
+    private fun aLicense(): OssLibrary {
+        return OssLibrary("library", "license", "link", "licenseLink")
     }
 
-    private inline fun <reified T : OssLicensesViewModel.Command> assertCommandIssued(instanceAssertions: T.() -> Unit = {}) {
+    private inline fun <reified T : OssLibrariesViewModel.Command> assertCommandIssued(instanceAssertions: T.() -> Unit = {}) {
         Mockito.verify(mockCommandObserver, atLeastOnce()).onChanged(commandCaptor.capture())
         val issuedCommand = commandCaptor.allValues.find { it is T }
         assertNotNull(issuedCommand)

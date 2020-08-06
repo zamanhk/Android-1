@@ -298,8 +298,8 @@
             android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
 
         <activity
-            android:name="com.duckduckgo.app.licenses.ui.OssLicensesActivity"
-            android:label="@string/ossLicensesActivityTitle"
+            android:name="com.duckduckgo.app.licenses.ui.OssLibrariesActivity"
+            android:label="@string/ossLibrariesActivityTitle"
             android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
 
         <service

@@ -24,19 +24,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.duckduckgo.app.browser.BrowserActivity
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.global.DuckDuckGoActivity
-import com.duckduckgo.app.licenses.model.OssLicensesViewModel
-import kotlinx.android.synthetic.main.content_oss_licenses.licensesList
+import com.duckduckgo.app.licenses.model.OssLibrariesViewModel
+import kotlinx.android.synthetic.main.content_oss_libraries.librariesList
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-class OssLicensesActivity : DuckDuckGoActivity() {
+class OssLibrariesActivity : DuckDuckGoActivity() {
 
-    private val viewModel: OssLicensesViewModel by bindViewModel()
-    private val licensesAdapter: OssLicensesAdapter =
-        OssLicensesAdapter(onItemClick = { item -> viewModel.userRequestedToOpenLink(item) }, onLicenseLink = { item -> viewModel.userRequestedToOpenLicense(item) })
+    private val viewModel: OssLibrariesViewModel by bindViewModel()
+    private val librariesAdapter: OssLibrariesAdapter =
+        OssLibrariesAdapter(onItemClick = { item -> viewModel.userRequestedToOpenLink(item) }, onLicenseLink = { item -> viewModel.userRequestedToOpenLicense(item) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_oss_licenses)
+        setContentView(R.layout.activity_oss_libraries)
         setupToolbar(toolbar)
 
         configureRecycler()
@@ -44,14 +44,14 @@ class OssLicensesActivity : DuckDuckGoActivity() {
     }
 
     private fun configureRecycler() {
-        licensesList.layoutManager = LinearLayoutManager(this)
-        licensesList.adapter = licensesAdapter
+        librariesList.layoutManager = LinearLayoutManager(this)
+        librariesList.adapter = librariesAdapter
     }
 
     private fun observeViewModel() {
-        viewModel.viewState.observe(this, Observer<OssLicensesViewModel.ViewState> { viewState ->
+        viewModel.viewState.observe(this, Observer<OssLibrariesViewModel.ViewState> { viewState ->
             viewState?.let {
-                licensesAdapter.notifyChanges(viewState.licenses)
+                librariesAdapter.notifyChanges(viewState.licens)
             }
         })
 
@@ -59,12 +59,12 @@ class OssLicensesActivity : DuckDuckGoActivity() {
             processCommand(it)
         })
 
-        viewModel.loadLicenses()
+        viewModel.loadLibraries()
     }
 
-    private fun processCommand(it: OssLicensesViewModel.Command?) {
+    private fun processCommand(it: OssLibrariesViewModel.Command?) {
         when (it) {
-            is OssLicensesViewModel.Command.OpenLink -> openLink(it.url)
+            is OssLibrariesViewModel.Command.OpenLink -> openLink(it.url)
         }
     }
 
@@ -75,7 +75,7 @@ class OssLicensesActivity : DuckDuckGoActivity() {
 
     companion object {
         fun intent(context: Context): Intent {
-            return Intent(context, OssLicensesActivity::class.java)
+            return Intent(context, OssLibrariesActivity::class.java)
         }
     }
 }

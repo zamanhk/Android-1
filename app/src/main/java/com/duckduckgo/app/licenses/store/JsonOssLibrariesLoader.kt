@@ -18,24 +18,24 @@ package com.duckduckgo.app.licenses.store
 
 import android.content.Context
 import com.duckduckgo.app.browser.R
-import com.duckduckgo.app.licenses.model.LicensesJson
-import com.duckduckgo.app.licenses.model.OssLicense
+import com.duckduckgo.app.licenses.model.LibrariesJson
+import com.duckduckgo.app.licenses.model.OssLibrary
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
 
-interface OssLicensesLoader {
-    fun loadLicenses(): List<OssLicense>
+interface OssLibrariesLoader {
+    fun loadLibraries(): List<OssLibrary>
 }
 
-class JsonOssLicensesLoader @Inject constructor(
+class JsonOssLibrariesLoader @Inject constructor(
     private val context: Context,
     private val moshi: Moshi
-) : OssLicensesLoader {
+) : OssLibrariesLoader {
 
-    override fun loadLicenses(): List<OssLicense> {
-        val json = context.resources.openRawResource(R.raw.oss_licenses).bufferedReader().use { it.readText() }
-        val adapter = moshi.adapter(LicensesJson::class.java)
+    override fun loadLibraries(): List<OssLibrary> {
+        val json = context.resources.openRawResource(R.raw.oss_libraries).bufferedReader().use { it.readText() }
+        val adapter = moshi.adapter(LibrariesJson::class.java)
         val licenses = adapter.fromJson(json)
-        return licenses?.jsonToLicenses() ?: emptyList()
+        return licenses?.jsonToLibraries() ?: emptyList()
     }
 }

@@ -16,21 +16,21 @@
 
 package com.duckduckgo.app.licenses.model
 
-class LicensesJson {
-    lateinit var licenses: List<LicensesJsonModel>
+class LibrariesJson {
+    lateinit var licenses: List<LibrariesJsonModel>
 
-    fun jsonToLicenses(): List<OssLicense> {
+    fun jsonToLibraries(): List<OssLibrary> {
         return licenses.mapNotNull {
             val name = it.name ?: return@mapNotNull null
             val license = it.license ?: return@mapNotNull null
             val link = it.link ?: return@mapNotNull null
             val licenseLink = it.licenseLink ?: return@mapNotNull null
-            OssLicense(name, license, link, licenseLink)
+            OssLibrary(name, license, link, licenseLink)
         }
     }
 }
 
-data class LicensesJsonModel(
+data class LibrariesJsonModel(
     val name: String,
     val license: String,
     val link: String,

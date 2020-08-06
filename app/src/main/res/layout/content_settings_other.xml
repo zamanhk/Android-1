@@ -42,7 +42,7 @@
         style="@style/SettingsItemClickable"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/settingsOSSLicenses"
+        android:text="@string/settingsOSSLibraries"
         app:layout_constraintTop_toBottomOf="@id/about" />
 
     <TextView

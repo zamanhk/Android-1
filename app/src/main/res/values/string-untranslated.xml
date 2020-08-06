@@ -52,7 +52,7 @@
     <string name="useOurAppDeletionDialogText">Checking your feed in DuckDuckGo is a great alternative to using the Facebook app!&lt;br/&gt;&lt;br/&gt;But if the Facebook app is on your phone, it can make requests for data even when you\'re not using it.&lt;br/&gt;&lt;br/&gt;Prevent this by deleting it now!</string>
 
     <!-- OSS Licenses -->
-    <string name="settingsOSSLicenses">Open Source Licenses</string>
-    <string name="ossLicensesActivityTitle">Open Source Licenses</string>
+    <string name="settingsOSSLibraries">Open Source Libraries</string>
+    <string name="ossLibrariesActivityTitle">Open Source Libraries</string>
 
 </resources>

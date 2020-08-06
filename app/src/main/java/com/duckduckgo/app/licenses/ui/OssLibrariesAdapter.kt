@@ -22,19 +22,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.duckduckgo.app.browser.R
-import com.duckduckgo.app.licenses.model.OssLicense
+import com.duckduckgo.app.licenses.model.OssLibrary
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_license
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_link
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_name
 
-class OssLicensesAdapter(
-    private val onItemClick: (OssLicense) -> Unit,
-    private val onLicenseLink: (OssLicense) -> Unit
-) : RecyclerView.Adapter<OssLicensesAdapter.LicenseViewHolder>() {
+class OssLibrariesAdapter(
+    private val onItemClick: (OssLibrary) -> Unit,
+    private val onLicenseLink: (OssLibrary) -> Unit
+) : RecyclerView.Adapter<OssLibrariesAdapter.LibraryViewHolder>() {
 
-    private var licensesViewData: MutableList<OssLicense> = mutableListOf()
+    private var licensesViewData: MutableList<OssLibrary> = mutableListOf()
 
-    class LicenseViewHolder(
+    class LibraryViewHolder(
         val root: View,
         val name: TextView,
         val license: TextView,
@@ -43,12 +43,12 @@ class OssLicensesAdapter(
 
     override fun getItemCount() = licensesViewData.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LicenseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LibraryViewHolder {
         val root = LayoutInflater.from(parent.context).inflate(R.layout.item_oss_license, parent, false)
-        return LicenseViewHolder(root, root.oss_name, root.oss_license, root.oss_link)
+        return LibraryViewHolder(root, root.oss_name, root.oss_license, root.oss_link)
     }
 
-    override fun onBindViewHolder(holder: LicenseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LibraryViewHolder, position: Int) {
         val viewElement = licensesViewData[position]
         holder.itemView.setOnClickListener { onItemClick.invoke(viewElement) }
         holder.name.text = viewElement.name
@@ -57,7 +57,7 @@ class OssLicensesAdapter(
         holder.link.text = viewElement.link
     }
 
-    fun notifyChanges(newList: List<OssLicense>) {
+    fun notifyChanges(newList: List<OssLibrary>) {
         licensesViewData = newList.toMutableList()
         notifyDataSetChanged()
     }

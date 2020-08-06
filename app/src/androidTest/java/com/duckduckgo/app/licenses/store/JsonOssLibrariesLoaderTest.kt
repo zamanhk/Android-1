@@ -18,20 +18,20 @@ package com.duckduckgo.app.licenses.store
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.duckduckgo.app.browser.R
-import com.duckduckgo.app.licenses.model.LicensesJson
+import com.duckduckgo.app.licenses.model.LibrariesJson
 import com.squareup.moshi.Moshi
 import org.junit.Assert.*
 import org.junit.Test
 
-class JsonOssLicensesLoaderTest {
+class JsonOssLibrariesLoaderTest {
 
     @Test
     fun whenJsonFileIsReadThenLicensesAreValid() {
-        val jsonLicenses = InstrumentationRegistry.getInstrumentation().targetContext.resources.openRawResource(R.raw.oss_licenses)
+        val jsonLicenses = InstrumentationRegistry.getInstrumentation().targetContext.resources.openRawResource(R.raw.oss_libraries)
             .bufferedReader().use { it.readText() }
 
         val moshi = Moshi.Builder().build()
-        val adapter = moshi.adapter(LicensesJson::class.java)
+        val adapter = moshi.adapter(LibrariesJson::class.java)
         val root = adapter.fromJson(jsonLicenses)!!
 
         assertEquals(37, root.licenses.size)
