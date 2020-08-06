@@ -23,14 +23,14 @@ import com.duckduckgo.app.licenses.model.OssLicense
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
 
-interface OssLicensesLoader{
+interface OssLicensesLoader {
     fun loadLicenses(): List<OssLicense>
 }
 
 class JsonOssLicensesLoader @Inject constructor(
     private val context: Context,
     private val moshi: Moshi
-): OssLicensesLoader {
+) : OssLicensesLoader {
 
     override fun loadLicenses(): List<OssLicense> {
         val json = context.resources.openRawResource(R.raw.oss_licenses).bufferedReader().use { it.readText() }

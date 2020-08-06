@@ -23,9 +23,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.duckduckgo.app.browser.BrowserActivity
 import com.duckduckgo.app.browser.R
-import com.duckduckgo.app.global.AppUrl
 import com.duckduckgo.app.global.DuckDuckGoActivity
-import com.duckduckgo.app.licenses.model.OssLicense
 import com.duckduckgo.app.licenses.model.OssLicensesViewModel
 import kotlinx.android.synthetic.main.content_oss_licenses.licensesList
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -34,7 +32,7 @@ class OssLicensesActivity : DuckDuckGoActivity() {
 
     private val viewModel: OssLicensesViewModel by bindViewModel()
     private val licensesAdapter: OssLicensesAdapter =
-        OssLicensesAdapter(onItemClick = { item -> viewModel.userRequestedToOpenLink(item) }, onLicenseLink = {item -> viewModel.userRequestedToOpenLicense(item)})
+        OssLicensesAdapter(onItemClick = { item -> viewModel.userRequestedToOpenLink(item) }, onLicenseLink = { item -> viewModel.userRequestedToOpenLicense(item) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

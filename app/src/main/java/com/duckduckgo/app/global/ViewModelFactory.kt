@@ -52,7 +52,6 @@ import com.duckduckgo.app.icon.ui.ChangeIconViewModel
 import com.duckduckgo.app.launch.LaunchViewModel
 import com.duckduckgo.app.licenses.model.OssLicensesViewModel
 import com.duckduckgo.app.licenses.store.JsonOssLicensesLoader
-import com.duckduckgo.app.licenses.store.OssLicensesLoader
 import com.duckduckgo.app.notification.db.NotificationDao
 import com.duckduckgo.app.onboarding.store.UserStageStore
 import com.duckduckgo.app.onboarding.ui.OnboardingPageManager

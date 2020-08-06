@@ -29,7 +29,8 @@ import kotlinx.android.synthetic.main.item_oss_license.view.oss_name
 
 class OssLicensesAdapter(
     private val onItemClick: (OssLicense) -> Unit,
-    private val onLicenseLink: (OssLicense) -> Unit) : RecyclerView.Adapter<OssLicensesAdapter.LicenseViewHolder>() {
+    private val onLicenseLink: (OssLicense) -> Unit
+) : RecyclerView.Adapter<OssLicensesAdapter.LicenseViewHolder>() {
 
     private var licensesViewData: MutableList<OssLicense> = mutableListOf()
 

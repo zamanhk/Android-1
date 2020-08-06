@@ -72,7 +72,7 @@ class OssLicensesViewModelTest {
     }
 
     @Test
-    fun whenUserTapsOnLinkThenOpenLinkCommandIssued(){
+    fun whenUserTapsOnLinkThenOpenLinkCommandIssued() {
         val license = aLicense()
         testee.userRequestedToOpenLink(license)
 
@@ -82,7 +82,7 @@ class OssLicensesViewModelTest {
     }
 
     @Test
-    fun whenUserTapsOnLicenseThenOpenLinkCommandIssued(){
+    fun whenUserTapsOnLicenseThenOpenLinkCommandIssued() {
         val license = aLicense()
         testee.userRequestedToOpenLicense(license)
 

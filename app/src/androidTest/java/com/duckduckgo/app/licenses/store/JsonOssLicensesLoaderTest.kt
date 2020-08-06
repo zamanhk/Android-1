@@ -18,12 +18,8 @@ package com.duckduckgo.app.licenses.store
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.duckduckgo.app.browser.R
-import com.duckduckgo.app.httpsupgrade.api.HttpsWhitelistJsonAdapter
-import com.duckduckgo.app.httpsupgrade.model.HttpsWhitelistedDomain
 import com.duckduckgo.app.licenses.model.LicensesJson
-import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import org.junit.Assert.*
 import org.junit.Test
 
