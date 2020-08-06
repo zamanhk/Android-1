@@ -24,7 +24,8 @@ class LicensesJson {
             val name = it.name ?: return@mapNotNull null
             val license = it.license ?: return@mapNotNull null
             val link = it.link ?: return@mapNotNull null
-            OssLicense(name, license, link)
+            val licenseLink = it.licenseLink ?: return@mapNotNull null
+            OssLicense(name, license, link, licenseLink)
         }
     }
 }
@@ -32,5 +33,6 @@ class LicensesJson {
 data class LicensesJsonModel(
     val name: String,
     val license: String,
-    val link: String
+    val link: String,
+    val licenseLink: String
 )

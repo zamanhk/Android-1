@@ -19,22 +19,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:background="@android:color/white">
+    android:padding="16dp"
+    android:background="?selectableItemBackground">
 
     <TextView
         android:id="@+id/oss_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif"
         android:letterSpacing="-0.01"
-        android:lineSpacingExtra="7sp"
+        android:lineSpacingExtra="6sp"
         android:textColor="@color/almostBlackDark"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textIsSelectable="true"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="An amazing library" />
@@ -43,19 +41,34 @@
         android:id="@+id/oss_license"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
         android:lineSpacingExtra="7sp"
         android:textColor="@color/warmerGray"
         android:textSize="14sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/oss_link"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/oss_name"
+        tools:text="The amazing Apache License" />
+
+    <TextView
+        android:id="@+id/oss_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:gravity="start|center_vertical"
+        android:lineSpacingExtra="7sp"
+        android:textColor="@color/warmerGray"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:lines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/oss_name"
-        tools:text="The amazing Apache License" />
+        tools:text="The amazing link" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

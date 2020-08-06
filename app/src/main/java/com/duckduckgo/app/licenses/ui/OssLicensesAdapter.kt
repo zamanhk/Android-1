@@ -24,30 +24,36 @@ import androidx.recyclerview.widget.RecyclerView
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.licenses.model.OssLicense
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_license
+import kotlinx.android.synthetic.main.item_oss_license.view.oss_link
 import kotlinx.android.synthetic.main.item_oss_license.view.oss_name
 
-class OssLicensesAdapter(private val onClick: (OssLicense) -> Unit) : RecyclerView.Adapter<OssLicensesAdapter.LicenseViewHolder>() {
+class OssLicensesAdapter(
+    private val onItemClick: (OssLicense) -> Unit,
+    private val onLicenseLink: (OssLicense) -> Unit) : RecyclerView.Adapter<OssLicensesAdapter.LicenseViewHolder>() {
 
     private var licensesViewData: MutableList<OssLicense> = mutableListOf()
 
     class LicenseViewHolder(
         val root: View,
         val name: TextView,
-        val license: TextView
+        val license: TextView,
+        val link: TextView
     ) : RecyclerView.ViewHolder(root)
 
     override fun getItemCount() = licensesViewData.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LicenseViewHolder {
         val root = LayoutInflater.from(parent.context).inflate(R.layout.item_oss_license, parent, false)
-        return LicenseViewHolder(root, root.oss_name, root.oss_license)
+        return LicenseViewHolder(root, root.oss_name, root.oss_license, root.oss_link)
     }
 
     override fun onBindViewHolder(holder: LicenseViewHolder, position: Int) {
         val viewElement = licensesViewData[position]
-        holder.itemView.setOnClickListener { onClick.invoke(viewElement) }
+        holder.itemView.setOnClickListener { onItemClick.invoke(viewElement) }
         holder.name.text = viewElement.name
         holder.license.text = viewElement.license
+        holder.license.setOnClickListener { onLicenseLink.invoke(viewElement) }
+        holder.link.text = viewElement.link
     }
 
     fun notifyChanges(newList: List<OssLicense>) {

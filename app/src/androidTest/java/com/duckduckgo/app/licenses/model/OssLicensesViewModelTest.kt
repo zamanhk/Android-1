@@ -22,6 +22,7 @@ import com.duckduckgo.app.CoroutineTestRule
 import com.duckduckgo.app.InstantSchedulersRule
 import com.duckduckgo.app.fire.fireproofwebsite.data.FireproofWebsiteEntity
 import com.duckduckgo.app.fire.fireproofwebsite.ui.FireproofWebsitesViewModel
+import com.duckduckgo.app.licenses.store.LicensesLoader
 import com.duckduckgo.app.licenses.store.OssLicensesLoader
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.nhaarman.mockitokotlin2.atLeastOnce
@@ -51,7 +52,7 @@ class OssLicensesViewModelTest {
     private var mockViewStateObserver: Observer<OssLicensesViewModel.ViewState> = mock()
     private val viewStateCaptor = ArgumentCaptor.forClass(OssLicensesViewModel.ViewState::class.java)
 
-    private var licensesLoader: OssLicensesLoader = mock()
+    private var licensesLoader: LicensesLoader = mock()
     private var mockPixel: Pixel = mock()
 
     private val testee: OssLicensesViewModel by lazy {
@@ -79,21 +80,30 @@ class OssLicensesViewModelTest {
         testee.userRequestedToOpenLink(license)
 
         assertCommandIssued<OssLicensesViewModel.Command.OpenLink> {
-            assertEquals(license, this.license)
+            assertEquals(license.link, this.url)
         }
+    }
 
+    @Test
+    fun whenUserTapsOnLicenseThenOpenLinkCommandIssued(){
+        val license = aLicense()
+        testee.userRequestedToOpenLicense(license)
+
+        assertCommandIssued<OssLicensesViewModel.Command.OpenLink> {
+            assertEquals(license.licenseLink, this.url)
+        }
     }
 
     private fun someLicenses(): List<OssLicense> {
         return listOf(
-            OssLicense("one name", "one license", "one link"),
+            OssLicense("one name", "one license", "one link", "licenseLink"),
             OssLicense
-                ("second name", "second license", "second link")
+                ("second name", "second license", "second link", "licenseLink")
         )
     }
 
     private fun aLicense(): OssLicense {
-        return OssLicense("library", "license", "link")
+        return OssLicense("library", "license", "link", "licenseLink")
     }
 
     private inline fun <reified T : OssLicensesViewModel.Command> assertCommandIssued(instanceAssertions: T.() -> Unit = {}) {

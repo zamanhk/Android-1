@@ -26,6 +26,7 @@ import com.duckduckgo.app.global.DispatcherProvider
 import com.duckduckgo.app.global.DuckDuckGoTheme
 import com.duckduckgo.app.global.SingleLiveEvent
 import com.duckduckgo.app.icon.api.AppIcon
+import com.duckduckgo.app.licenses.store.LicensesLoader
 import com.duckduckgo.app.licenses.store.OssLicensesLoader
 import com.duckduckgo.app.settings.clear.ClearWhatOption
 import com.duckduckgo.app.settings.clear.ClearWhenOption
@@ -40,7 +41,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class OssLicensesViewModel @Inject constructor(
-    private val ossLicensesLoader: OssLicensesLoader,
+    private val ossLicensesLoader: LicensesLoader,
     private val pixel: Pixel,
     private val dispatchers: DispatcherProvider = DefaultDispatcherProvider()
 ) : ViewModel() {
@@ -50,7 +51,7 @@ class OssLicensesViewModel @Inject constructor(
     )
 
     sealed class Command {
-        data class OpenLink(val license: OssLicense) : Command()
+        data class OpenLink(val url: String) : Command()
     }
 
     val viewState: MutableLiveData<ViewState> = MutableLiveData<ViewState>().apply {
@@ -71,7 +72,11 @@ class OssLicensesViewModel @Inject constructor(
     }
 
     fun userRequestedToOpenLink(license: OssLicense) {
-        command.value = Command.OpenLink(license)
+        command.value = Command.OpenLink(license.link)
+    }
+
+    fun userRequestedToOpenLicense(license: OssLicense) {
+        command.value = Command.OpenLink(license.licenseLink)
     }
 
     private fun currentViewState(): ViewState {

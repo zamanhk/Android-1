@@ -25,12 +25,16 @@ import com.duckduckgo.app.trackerdetection.api.TdsJson
 import com.squareup.moshi.Moshi
 import javax.inject.Inject
 
+interface LicensesLoader{
+    fun loadLicenses(): List<OssLicense>
+}
+
 class OssLicensesLoader @Inject constructor(
     private val context: Context,
     private val moshi: Moshi
-) {
+): LicensesLoader {
 
-    fun loadLicenses(): List<OssLicense> {
+    override fun loadLicenses(): List<OssLicense> {
         val json = context.resources.openRawResource(R.raw.oss_licenses).bufferedReader().use { it.readText() }
         val adapter = moshi.adapter(LicensesJson::class.java)
         val licenses = adapter.fromJson(json)

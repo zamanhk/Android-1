@@ -19,5 +19,6 @@ package com.duckduckgo.app.licenses.model
 data class OssLicense(
     val name: String,
     val license: String,
-    val link: String
+    val link: String,
+    val licenseLink: String
 )

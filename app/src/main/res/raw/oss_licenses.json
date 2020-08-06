@@ -3,12 +3,224 @@
     {
       "name": "Android Support Libraries",
       "license": "Apache 2.0",
-      "link": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      "link": "https://android.googlesource.com/platform/frameworks/support/",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
     },
     {
       "name": "Android App Compat",
       "license": "Apache 2.0",
-      "link": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      "link": "https://developer.android.com/jetpack/androidx/releases/appcompat",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android ConstraintLayout",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/reference/androidx/constraintlayout/widget/ConstraintLayout",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Core Testing",
+      "license": "Apache 2.0",
+      "link": "https://github.com/android/android-test",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Lifecycle Extensions",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/jetpack/androidx/releases/lifecycle",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Lifecycle ViewModel Kotlin Extensions",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/jetpack/androidx/releases/lifecycle",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Room Kotlin Extensions",
+      "license": "Apache 2.0",
+      "link": "https://android.googlesource.com/platform/frameworks/support/",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Room Runtime",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/topic/libraries/architecture/room",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Room RxJava2",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/topic/libraries/architecture/room",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Android Room Testing",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/training/data-storage/room/testing-db",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Anko",
+      "license": "Apache 2.0",
+      "link": "https://github.com/Kotlin/anko",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Apache Commons Math",
+      "license": "Apache 2.0",
+      "link": "https://github.com/apache/commons-math",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Dagger Android",
+      "license": "Apache 2.0",
+      "link": "https://github.com/google/dagger",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Dagger Android Support",
+      "license": "Apache 2.0",
+      "link": "https://github.com/google/dagger",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Glide",
+      "license": "Apache 2.0",
+      "link": "https://github.com/bumptech/glide",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Kotlin Coroutines",
+      "license": "Apache 2.0",
+      "link": "https://github.com/Kotlin/kotlinx.coroutines",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Kotlin Extensions: Core",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/kotlin/ktx",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Kotlin Extensions: Fragment",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/kotlin/ktx",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Kotlin Reflection",
+      "license": "Apache 2.0",
+      "link": "https://kotlinlang.org/docs/reference/reflection.html",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Kotlin Standard Library",
+      "license": "Apache 2.0",
+      "link": "https://kotlinlang.org/api/latest/jvm/stdlib/",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Leak Canary",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/leakcanary",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Lottie",
+      "license": "Apache 2.0",
+      "link": "https://github.com/airbnb/lottie-android",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Material Components for Android",
+      "license": "Apache 2.0",
+      "link": "https://github.com/material-components/material-components-android",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Mockito Core",
+      "license": "Apache 2.0",
+      "link": "https://github.com/mockito/mockito",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Mockito Kotlin",
+      "license": "MIT License",
+      "link": "https://github.com/nhaarman/mockito-kotlin",
+      "licenseLink": "https://mit-license.org/"
+    },
+    {
+      "name": "OkHttp",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/okhttp",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Retrofit",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/retrofit",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Retrofit Converter: Moshi",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/retrofit",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Retrofit Converter: Moshi",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/retrofit",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Retrofit Adapter: RxJava 2",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/retrofit",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Retrofit Converter: Scalars",
+      "license": "Apache 2.0",
+      "link": "https://github.com/square/retrofit",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Retrofit Kotlin Coroutine Adapter",
+      "license": "Apache 2.0",
+      "link": "https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "RxAndroid",
+      "license": "Apache 2.0",
+      "link": "https://github.com/ReactiveX/RxAndroid",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "RxJava",
+      "license": "Apache 2.0",
+      "link": "https://github.com/ReactiveX/RxJava",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "RxRelay",
+      "license": "Apache 2.0",
+      "link": "https://github.com/JakeWharton/RxRelay",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Timber",
+      "license": "Apache 2.0",
+      "link": "https://github.com/JakeWharton/timber",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "WebView Support Library",
+      "license": "Apache 2.0",
+      "link": "https://developer.android.com/jetpack/androidx/releases/webkit",
+      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
     }
   ]
 }

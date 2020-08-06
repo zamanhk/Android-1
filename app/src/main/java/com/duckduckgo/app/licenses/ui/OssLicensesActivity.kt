@@ -33,9 +33,8 @@ import kotlinx.android.synthetic.main.include_toolbar.*
 class OssLicensesActivity : DuckDuckGoActivity() {
 
     private val viewModel: OssLicensesViewModel by bindViewModel()
-    private val licensesAdapter: OssLicensesAdapter = OssLicensesAdapter { license ->
-        viewModel.userRequestedToOpenLink(license)
-    }
+    private val licensesAdapter: OssLicensesAdapter =
+        OssLicensesAdapter(onItemClick = { item -> viewModel.userRequestedToOpenLink(item) }, onLicenseLink = {item -> viewModel.userRequestedToOpenLicense(item)})
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +50,7 @@ class OssLicensesActivity : DuckDuckGoActivity() {
         licensesList.adapter = licensesAdapter
     }
 
-    private fun observeViewModel(){
+    private fun observeViewModel() {
         viewModel.viewState.observe(this, Observer<OssLicensesViewModel.ViewState> { viewState ->
             viewState?.let {
                 licensesAdapter.notifyChanges(viewState.licenses)
@@ -67,12 +66,12 @@ class OssLicensesActivity : DuckDuckGoActivity() {
 
     private fun processCommand(it: OssLicensesViewModel.Command?) {
         when (it) {
-            is OssLicensesViewModel.Command.OpenLink -> openLink(it.license)
+            is OssLicensesViewModel.Command.OpenLink -> openLink(it.url)
         }
     }
 
-    private fun openLink(license: OssLicense) {
-        startActivity(BrowserActivity.intent(this, license.link))
+    private fun openLink(url: String) {
+        startActivity(BrowserActivity.intent(this, url))
         finish()
     }
 
@@ -81,5 +80,4 @@ class OssLicensesActivity : DuckDuckGoActivity() {
             return Intent(context, OssLicensesActivity::class.java)
         }
     }
-
 }
