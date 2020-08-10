@@ -31,12 +31,6 @@
       "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
     },
     {
-      "name": "Android Lifecycle ViewModel Kotlin Extensions",
-      "license": "Apache 2.0",
-      "link": "https://developer.android.com/jetpack/androidx/releases/lifecycle",
-      "licenseLink": "https://apache.org/licenses/LICENSE-2.0"
-    },
-    {
       "name": "Android Room Kotlin Extensions",
       "license": "Apache 2.0",
       "link": "https://android.googlesource.com/platform/frameworks/support/",
