@@ -53,8 +53,8 @@ interface VariantManager {
         val ACTIVE_VARIANTS = listOf(
             // SERP variants. "sc" may also be used as a shared control for mobile experiments in
             // the future if we can filter by app version
-            Variant(key = "sc", weight = 1.0, features = emptyList(), filterBy = { noFilter() }),
-            Variant(key = "se", weight = 1.0, features = emptyList(), filterBy = { noFilter() }),
+            Variant(key = "sc", weight = 0.0, features = emptyList(), filterBy = { noFilter() }),
+            Variant(key = "se", weight = 0.0, features = emptyList(), filterBy = { noFilter() }),
 
             // Notification Drip Experiment
             Variant(
@@ -106,7 +106,7 @@ interface VariantManager {
                 features = listOf(VariantFeature.KillOnboarding, VariantFeature.InAppUsage, VariantFeature.RemoveDay1AndDay3Notifications),
                 filterBy = { isEnglishLocale() }),
             // Fire Education Experiments
-            Variant(key = "zm", weight = 1.0, features = emptyList(), filterBy = { isEnglishLocale() }),
+            Variant(key = "zm", weight = 0.0, features = emptyList(), filterBy = { isEnglishLocale() }),
             Variant(
                 key = "zr",
                 weight = 1.0,
