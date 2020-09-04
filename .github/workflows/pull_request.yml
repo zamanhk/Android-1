@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build PR APK
-          run: ./gradlew assembleDebug
+          run: bash ./gradlew assembleDebug
       - name: Upload APK
           uses: actions/upload-artifact@v1
           with:
