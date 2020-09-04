@@ -12,8 +12,7 @@ jobs:
         with:
           ref: main
       - name: Build Main APK
-        run: ./gradlew assembleDebug
-          mv app/build/outputs/apk/release/duckduckgo-5.63.1-release-unsigned.apk app/build/outputs/apk/debug/app-main.apk
+        run: ./gradlew assembleDebug && mv app/build/outputs/apk/release/duckduckgo-5.63.1-release-unsigned.apk app/build/outputs/apk/debug/app-main.apk
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
@@ -25,8 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build PR APK
-          run: ./gradlew assembleDebug
-            mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-pr.apk
+          run: ./gradlew assembleDebug && mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-pr.apk
             - name: Upload APK
               uses: actions/upload-artifact@v1
               with:
