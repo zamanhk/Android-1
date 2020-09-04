@@ -12,12 +12,14 @@ jobs:
         with:
           ref: main
       - name: Build Main APK
-        run: ./gradlew assembleDebug && mv app/build/outputs/apk/release/duckduckgo-5.63.1-release-unsigned.apk app/build/outputs/apk/debug/app-main.apk
+        run: |
+        ./gradlew assembleDebug
+        mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-master.apk
       - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: apk
-          path: app/build/outputs/apk/debug/app-main.apk
+          uses: actions/upload-artifact@v1
+          with:
+            name: apk
+            path: app/build/outputs/apk/debug/app-main.apk
 
   # Checkout PR branch and build the APK
   build-pr:
@@ -25,11 +27,11 @@ jobs:
     steps:
       - name: Build PR APK
           run: ./gradlew assembleDebug && mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-pr.apk
-            - name: Upload APK
-              uses: actions/upload-artifact@v1
-              with:
-                name: apk
-                path: app/build/outputs/apk/debug/app-pr.apk
+                 - name: Upload APK
+                 uses: actions/upload-artifact@v1
+                 with:
+                   name: apk
+                   path: app/build/outputs/apk/debug/app-pr.apk
 
   # Execute Diffuse only when the two APKs are built successfully
   diffuse:
