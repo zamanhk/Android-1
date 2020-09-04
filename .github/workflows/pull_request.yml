@@ -4,38 +4,21 @@ on:
   branches: [ diffuse ]
 
 jobs:
-  # Checkout main branch and build the APK
-  build-main:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          ref: main
-      - name: Build Main APK
-        run: |
-        ./gradlew assembleDebug
-        mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-master.apk
-      - name: Upload APK
-          uses: actions/upload-artifact@v1
-          with:
-            name: apk
-            path: app/build/outputs/apk/debug/app-main.apk
-
   # Checkout PR branch and build the APK
   build-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Build PR APK
-          run: ./gradlew assembleDebug && mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-pr.apk
-                 - name: Upload APK
-                 uses: actions/upload-artifact@v1
-                 with:
-                   name: apk
-                   path: app/build/outputs/apk/debug/app-pr.apk
+          run: ./gradlew assembleDebug
+      - name: Upload APK
+          uses: actions/upload-artifact@v1
+          with:
+            name: apk
+            path: app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk
 
   # Execute Diffuse only when the two APKs are built successfully
   diffuse:
-    needs: [build-main, build-pr]
+    needs: [build-pr]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -44,4 +27,4 @@ jobs:
         with:
           name: apk
       - name: Execute Diffuse
-        run: ./diffuse diff apk/app-master.apk apk/app-pr.apk
+        run: ./diffuse info app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk
