@@ -8,22 +8,13 @@ jobs:
   build-main:
     runs-on: ubuntu-latest
     steps:
-      - name: Read current version
-          id: read_property
-          uses: christian-draeger/read-properties@1.0.1
-          with:
-            path: 'app/version.properties'
-            property: 'VERSION'
-      - name: Current release version is
-          run: echo ${{ steps.read_property.outputs.value }}
-                 - uses: actions/checkout@v1
       - uses: actions/checkout@v1
         with:
           ref: main
       - name: Build Main APK
         run: |
           ./gradlew assembleDebug
-          mv app/build/outputs/apk/release/duckduckgo-{ steps.read_property.outputs.value }-release-unsigned.apk app/build/outputs/apk/debug/app-main.apk
+          mv app/build/outputs/apk/release/duckduckgo-5.63.1-release-unsigned.apk app/build/outputs/apk/debug/app-main.apk
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
@@ -34,19 +25,10 @@ jobs:
   build-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Read current version
-        id: read_property
-        uses: christian-draeger/read-properties@1.0.1
-        with:
-          path: 'app/version.properties'
-          property: 'VERSION'
-      - name: Current release version is
-        run: echo ${{ steps.read_property.outputs.value }}
-               - uses: actions/checkout@v1
       - name: Build PR APK
           run: |
             ./gradlew assembleDebug
-            mv app/build/outputs/apk/debug/duckduckgo-{ steps.read_property.outputs.value }-debug.apk app/build/outputs/apk/debug/app-pr.apk
+            mv app/build/outputs/apk/debug/duckduckgo-5.63.1-debug.apk app/build/outputs/apk/debug/app-pr.apk
             - name: Upload APK
               uses: actions/upload-artifact@v1
               with:
