@@ -1,8 +1,8 @@
 name: Pull Request
 
 on:
-  push:
-    branches: [ diffuse ]
+  pull_request:
+  branches: [ diffuse ]
 
 jobs:
 
