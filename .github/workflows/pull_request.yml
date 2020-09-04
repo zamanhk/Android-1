@@ -1,10 +1,9 @@
 name: Testing Workflow
 
-on:
-  pull_request: {}
-  push:
-    branches:
-      - [feature/david/diff_comparison]
+  on:
+    push:
+      branches:
+        - 'feature/david/*'
 
   jobs:
     testing:
