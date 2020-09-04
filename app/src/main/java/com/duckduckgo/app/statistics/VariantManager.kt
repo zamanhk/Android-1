@@ -46,13 +46,13 @@ interface VariantManager {
         val ACTIVE_VARIANTS = listOf(
             // SERP variants. "sc" may also be used as a shared control for mobile experiments in
             // the future if we can filter by app version
-            Variant(key = "sc", weight = 1.0, features = emptyList(), filterBy = { noFilter() }),
-            Variant(key = "se", weight = 1.0, features = emptyList(), filterBy = { noFilter() }),
+            Variant(key = "sc", weight = 0.0, features = emptyList(), filterBy = { noFilter() }),
+            Variant(key = "se", weight = 0.0, features = emptyList(), filterBy = { noFilter() }),
 
             // Single Search Bar Experiments
             Variant(key = "zg", weight = 0.0, features = emptyList(), filterBy = { noFilter() }),
             Variant(key = "zh", weight = 0.0, features = listOf(VariantFeature.SerpHeaderQueryReplacement), filterBy = { noFilter() }),
-            Variant(key = "zi", weight = 0.0, features = listOf(VariantFeature.SerpHeaderRemoval), filterBy = { noFilter() }),
+            Variant(key = "zi", weight = 1.0, features = listOf(VariantFeature.SerpHeaderRemoval), filterBy = { noFilter() }),
 
             // InAppUsage Experiments
             Variant(key = "zj", weight = 0.0, features = emptyList(), filterBy = { isEnglishLocale() }),

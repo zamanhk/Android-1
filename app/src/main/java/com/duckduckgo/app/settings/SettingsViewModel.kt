@@ -64,6 +64,7 @@ class SettingsViewModel @Inject constructor(
         object LaunchWhitelist : Command()
         object LaunchAppIcon : Command()
         object UpdateTheme : Command()
+        object SearchSettings : Command()
     }
 
     val viewState: MutableLiveData<ViewState> = MutableLiveData<ViewState>().apply {
@@ -110,6 +111,10 @@ class SettingsViewModel @Inject constructor(
 
     fun onLocationClicked() {
         command.value = Command.LaunchLocation
+    }
+
+    fun onSearchSettingsClicked() {
+        command.value = Command.SearchSettings
     }
 
     fun onLightThemeToggled(enabled: Boolean) {

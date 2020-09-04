@@ -257,6 +257,10 @@
             android:label="@string/settingsActivityTitle"
             android:parentActivityName=".BrowserActivity" />
         <activity
+            android:name="com.duckduckgo.app.settings.SearchSettingsActivity"
+            android:label="@string/searchSettingsActivityTitle"
+            android:parentActivityName="com.duckduckgo.app.settings.SettingsActivity" />
+        <activity
             android:name="com.duckduckgo.app.feedback.ui.common.FeedbackActivity"
             android:label="@string/feedbackActivityTitle"
             android:windowSoftInputMode="adjustResize" />

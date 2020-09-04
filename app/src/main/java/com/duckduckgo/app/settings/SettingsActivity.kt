@@ -87,6 +87,7 @@ class SettingsActivity : DuckDuckGoActivity(), SettingsAutomaticallyClearWhatFra
         provideFeedback.setOnClickListener { viewModel.userRequestedToSendFeedback() }
         fireproofWebsites.setOnClickListener { viewModel.onFireproofWebsitesClicked() }
         locationPermissions.setOnClickListener { viewModel.onLocationClicked() }
+        searchSettingsLabel.setOnClickListener { viewModel.onSearchSettingsClicked() }
 
         lightThemeToggle.setOnCheckedChangeListener(lightThemeToggleListener)
         autocompleteToggle.setOnCheckedChangeListener(autocompleteToggleListener)
@@ -144,6 +145,7 @@ class SettingsActivity : DuckDuckGoActivity(), SettingsAutomaticallyClearWhatFra
             is Command.LaunchWhitelist -> launchWhitelist()
             is Command.LaunchAppIcon -> launchAppIconChange()
             is Command.UpdateTheme -> sendThemeChangedBroadcast()
+            is Command.SearchSettings -> launchSearchSettings()
         }
     }
 
@@ -187,6 +189,11 @@ class SettingsActivity : DuckDuckGoActivity(), SettingsAutomaticallyClearWhatFra
     private fun launchAppIconChange() {
         val options = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
         startActivityForResult(Intent(ChangeIconActivity.intent(this)), CHANGE_APP_ICON_REQUEST_CODE, options)
+    }
+
+    private fun launchSearchSettings() {
+        val options = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+        startActivity(Intent(SearchSettingsActivity.intent(this)), options)
     }
 
     override fun onAutomaticallyClearWhatOptionSelected(clearWhatSetting: ClearWhatOption) {

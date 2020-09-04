@@ -72,4 +72,8 @@
     <string name="preciseLocationDeniedSitesSectionTitle">Denied</string>
     <string name="preciseLocationSnackbarMessage">You previously granted %s permission to access your device location.</string>
 
+    <string name="searchSettingsCtaLabel">Search Settings</string>
+    <string name="searchSettingsSubtitleCtaLabel">For our search engine results, stored as cookies</string>
+    <string name="searchSettingsActivityTitle">Search Settings</string>
+
 </resources>

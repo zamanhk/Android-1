@@ -29,6 +29,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.duckduckgo.app.settings.SettingsOptionWithSubtitle
+        android:id="@+id/searchSettingsLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsGeneralTitle"
+        app:title="@string/searchSettingsCtaLabel"
+        app:subtitle="@string/searchSettingsSubtitleCtaLabel" />
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/lightThemeToggle"
         style="@style/SettingsSwitch"
@@ -36,7 +46,7 @@
         android:theme="@style/SettingsSwitchTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settingsGeneralTitle" />
+        app:layout_constraintTop_toBottomOf="@id/searchSettingsLabel" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/autocompleteToggle"
